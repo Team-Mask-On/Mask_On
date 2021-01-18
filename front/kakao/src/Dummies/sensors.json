@@ -1,65 +1,107 @@
 [
     {
-        "id": 1,
-        "lat": 36.360649863349586,
-        "lng": 127.34453802638934,
+        "sensor_id": 1,
         "name": "스타벅스",
-        "desc": "스타벅스 충남대정문점",
-        "addr": "대전광역시 유성구 온천2동 대학로 82",
-        "maxCount": 40
+        "description": "스타벅스 충남대정문점",
+        "address": "대전광역시 유성구 온천2동 대학로 82",
+        "latitude": 36.360649863349586,
+        "longitude": 127.34453802638934,
+        "max_capacity": 40,
+        "current": {
+            "masked": 34,
+            "unmasked": 10,
+            "average_masked": 24,
+            "average_unmasked": 5
+        }
     },
     {
-        "id": 2,
-        "lat": 36.36155681655039,
-        "lng": 127.34385159304685,
+        "sensor_id": 2,
         "name": "투썸플레이스",
         "desc": "투썸플레이스 충남대점",
         "addr": "대전광역시 유성구 궁동 479-8",
-        "maxCount": 40
+        "latitude": 36.36155681655039,
+        "longitude": 127.34385159304685,
+        "max_capacity": 40,
+        "current": {
+            "masked": 15,
+            "unmasked": 4,
+            "average_masked": 11,
+            "average_unmasked": 3
+        }
     },
     {
         "id": 3,
-        "lat": 36.36187576302508, 
-        "lng": 127.34414005232662,
         "name": "이디야",
         "desc": "이디야커피 충대정문점",
         "addr": "대전 유성구 한밭대로 404",
-        "maxCount": 20
+        "latitude": 36.36187576302508, 
+        "longitude": 127.34414005232662,
+        "max_capacity": 20,
+        "current": {
+            "masked": 5,
+            "unmasked": 1,
+            "average_masked": 6,
+            "average_unmasked": 2
+        }
     },
     {
         "id": 4,
-        "lat": 36.362696240625276, 
-        "lng": 127.34819105216812,
         "name": "이디야",
         "desc": "이디야 충남대점",
         "addr": "대전광역시 유성구 궁동 궁동로18번길 14",
-        "maxCount": 20
+        "latitude": 36.362696240625276, 
+        "longitude": 127.34819105216812,
+        "max_capacity": 20,
+        "current": {
+            "masked": 10,
+            "unmasked": 10,
+            "average_masked": 9,
+            "average_unmasked": 11
+        }
     },
     {
         "id": 5,
-        "lat": 36.35880573195997, 
-        "lng": 127.34475646173952,
         "name": "BBQ 치킨",
         "desc": "BBQ 대전봉명점",
         "addr": "대전 유성구 대학로 60",
-        "maxCount": 15
+        "latitude": 36.35880573195997, 
+        "longitude": 127.34475646173952,
+        "max_capacity": 15,
+        "current": {
+            "masked": 7,
+            "unmasked": 1,
+            "average_masked": 10,
+            "average_unmasked": 3
+        }
     },
     {
         "id": 6,
-        "lat": 36.356065072244995, 
-        "lng": 127.34293519722736,
         "name": "파파존스",
         "desc": "파파존스 대전유성점",
         "addr": "대전 유성구 온천로 45 푸르지오상가 106호",
-        "maxCount": 3
+        "latitude": 36.356065072244995, 
+        "longitude": 127.34293519722736,
+        "max_capacity": 3,
+        "current": {
+            "masked": 3,
+            "unmasked": 0,
+            "average_masked": 2,
+            "average_unmasked": 1
+        }
     },
     {
         "id": 7,
-        "lat": 36.36180287645795,
-        "lng": 127.35080692699286,
         "name": "배재원 회덮밥",
         "desc": "배재원 회덮밥",
         "addr": "대전광역시 유성구 궁동 426-1번지 2층",
-        "maxCount": 10
+        "latitude": 36.36180287645795,
+        "longitude": 127.35080692699286,
+        "max_capacity": 10,
+        "current": {
+            "masked": 1,
+            "unmasked": 8,
+            "average_masked": 2,
+            "average_unmasked": 6
+        }
     }
 ]
