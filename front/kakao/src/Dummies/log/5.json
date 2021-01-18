@@ -1,211 +1,211 @@
 [
     {
-        "id": 1,
-        "sensorID": 1,
-        "time": "2021-01-12-23-02-12",
+        "log_id": 1,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-02-12",
         "masked": 10,
         "unmasked": 15
     },
     {
-        "id": 2,
-        "sensorID": 1,
-        "time": "2021-01-12-23-03-12",
+        "log_id": 2,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-03-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 3,
-        "sensorID": 1,
-        "time": "2021-01-12-23-04-12",
+        "log_id": 3,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-04-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 4,
-        "sensorID": 1,
-        "time": "2021-01-12-23-05-12",
+        "log_id": 4,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-05-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 5,
-        "sensorID": 1,
-        "time": "2021-01-12-23-06-12",
+        "log_id": 5,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-06-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 6,
-        "sensorID": 1,
-        "time": "2021-01-12-23-07-12",
+        "log_id": 6,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-07-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 7,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 7,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 8,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 8,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 9,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 9,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 10,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 10,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 11,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 11,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 12,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 12,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 13,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 13,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 14,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 14,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 15,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 15,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 16,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 16,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 17,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 17,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 18,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 18,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 19,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 19,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 20,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 20,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 21,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 21,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 22,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 22,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 23,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 23,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 24,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 24,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 25,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 25,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 26,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 26,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 27,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 27,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 28,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 28,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 29,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 29,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
-        "id": 30,
-        "sensorID": 1,
-        "time": "2021-01-12-23-08-12",
+        "log_id": 30,
+        "sensor_id": 1,
+        "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     }
