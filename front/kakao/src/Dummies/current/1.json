@@ -1,0 +1,9 @@
+[
+    {
+        "sensorID": 1,
+        "currentMasked": 34,
+        "currentUnmasked": 10,
+        "averageMasked": 24,
+        "averageUnmasked": 5
+    }
+]
