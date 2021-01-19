@@ -7,44 +7,27 @@ import SensorModal from './SensorModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Sensor({ sensorInfo }){
-    const id = sensorInfo.id;
-    const lat = sensorInfo.lat;
-    const lng = sensorInfo.lng;
-    const name = sensorInfo.name;
-    const [currentData, setCurrentData] = useState([]);
     const [totalDifference, setTotalDifference] = useState([]);
     const [ratioDifference, setRatioDifference] = useState([]);
     const [capacity, setCapacity] = useState([]);
-    const [averageMaskedData, setAverageMaskedData] = useState([]);
-    const [averageUnmaskedData, setAverageUnmaskedData] = useState([]);
+    const [averageData, setAverageData] = useState([]);
     const [show, setShow] = useState(false);
 
     useEffect(() => {
-        const fetchCurrent = () => {
-            //Sensor별 현황 데이터 fetch. id에 기반해서 현재 데이터를 가져오는 API를 호출해줘야함.
-            setCurrentData(require("../Dummies/current/"+id+".json")[0]);
-            console.log("[FETCH] #" + String(id) + " Current Data Fetched!")
-        }
-        fetchCurrent();
-    }, [id, sensorInfo.maxCount]);
-
-    useEffect(() => {
         const updateDifferences = () => {
-            var currentTotal = currentData.currentMasked + currentData.currentUnmasked;
-            var averageTotal = currentData.averageMasked + currentData.averageUnmasked;
+            var currentTotal = sensorInfo.current.masked + sensorInfo.current.unmasked;
+            var averageTotal = sensorInfo.current.average_masked + sensorInfo.current.average_unmasked;
             setTotalDifference(currentTotal - averageTotal);
-            setRatioDifference((((currentData.currentMasked / currentTotal) * 100) - ((currentData.averageMasked / averageTotal) * 100)).toFixed(1))
-            setCapacity(sensorInfo.maxCount - currentTotal);
-            console.log("[UPDATE] #" + String(id) + " Updated differences!")
+            setRatioDifference((((sensorInfo.current.masked / currentTotal) * 100) - ((sensorInfo.current.average_masked / averageTotal) * 100)).toFixed(1))
+            setCapacity(sensorInfo.max_capacity - currentTotal);
+            console.log("[UPDATE] #" + String(sensorInfo.sensor_id) + " Updated differences!")
         }
         updateDifferences();
-    }, [currentData, id, sensorInfo.maxCount]);
+    }, [sensorInfo, sensorInfo.sensor_id, sensorInfo.max_capacity]);
 
     const fetchAverage = () => {
-        setAverageMaskedData(require("../Dummies/masked/"+id+".json"));
-        setAverageUnmaskedData(require("../Dummies/unmasked/"+id+".json"));
-        
-        console.log("[FETCH] #" + String(id) + " Average Data Fetched!");
+        setAverageData(require("../Dummies/average/"+String(sensorInfo.sensor_id)+".json"));
+        console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Average Data Fetched!");
     }
 
     const handleShow = () => {
@@ -59,7 +42,7 @@ function Sensor({ sensorInfo }){
         <>
             <CustomOverlay 
                 options={{
-                    position: new kakao.maps.LatLng(lat, lng),
+                    position: new kakao.maps.LatLng(sensorInfo.latitude, sensorInfo.longitude),
                     zIndex: 9999
                 }}
                 visible={true}
@@ -69,20 +52,19 @@ function Sensor({ sensorInfo }){
                         handleShow();
                     }} 
                     dangerouslySetInnerHTML={
-                        {__html: renderToString(<SensorCard name={name}></SensorCard>)}
+                        {__html: renderToString(<SensorCard name={sensorInfo.name}></SensorCard>)}
                 }></div>}
             ></CustomOverlay>
             <SensorModal 
                 sensorInfo={sensorInfo}
                 onClose={handleClose}
                 show={show}
-                currentMasked={currentData.currentMasked}
-                currentUnmasked={currentData.currentUnmasked}
+                currentMasked={sensorInfo.current.masked}
+                currentUnmasked={sensorInfo.current.unmasked}
                 totalDifference={totalDifference}
                 ratioDifference={ratioDifference}
                 capacity={capacity}
-                averageMasked={averageMaskedData}
-                averageUnmasked={averageUnmaskedData}
+                averageData={averageData}
             />
         </>
     );

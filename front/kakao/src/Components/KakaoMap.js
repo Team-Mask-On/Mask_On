@@ -24,16 +24,8 @@ function KakaoMap(){
                 minLevel: 2
             }}>{sensorData.map(sensor => {
                     return <Sensor 
-                        key={sensor.id}
-                        sensorInfo={{
-                            id: sensor.id,
-                            lat: sensor.lat,
-                            lng: sensor.lng,
-                            name: sensor.name,
-                            desc: sensor.desc,
-                            addr: sensor.addr,
-                            maxCount: sensor.maxCount
-                        }}
+                        key={sensor.sensor_id}
+                        sensorInfo={sensor}
                     ></Sensor>
                 })}
             </Map>

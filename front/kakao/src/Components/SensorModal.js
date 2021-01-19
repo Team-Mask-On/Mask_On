@@ -13,21 +13,21 @@ function SensorModal(props){
     const totalDifference = props.totalDifference;
     const ratioDifference = props.ratioDifference;
     const capacity = props.capacity;
-    const averageMaskedData = props.averageMasked;
-    const averageUnmaskedData = props.averageUnmasked;
+    const averageData = props.averageData;
     const [logView, setLogView] = useState(false);
     const [logData, setLogData] = useState([]);
 
     const fetchLog = () => {
-        setLogData(require("../Dummies/log/"+sensorInfo.id+".json"));
-        console.log("[FETCH] #" + String(sensorInfo.id) + " Log Data Fetched!");
+        setLogData(require("../Dummies/log/"+sensorInfo.sensor_id+".json"));
+        console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Log Data Fetched!");
     }
 
     return(
         <Modal 
             show={show} 
-            onHide={handleClose} 
-            animation={true} 
+            onHide={handleClose}
+            //react-bootstrap의 문제로 true로 설정하면 findDomNode 경고가 발생.
+            animation={true}
             aria-labelledby="contained-modal-title-vcenter"
             size='lg'
             centered
@@ -35,8 +35,8 @@ function SensorModal(props){
             <Modal.Header closeButton>
                 <Modal.Title>
                     <h1>{sensorInfo.name}</h1>
-                    <h6>{sensorInfo.desc}</h6>
-                    <h6>{sensorInfo.addr}</h6>
+                    <h6>{sensorInfo.description}</h6>
+                    <h6>{sensorInfo.address}</h6>
                 </Modal.Title>
             </Modal.Header>
             {logView ? 
@@ -53,8 +53,8 @@ function SensorModal(props){
                                     </tr>
                                 </thead>
                                 <tbody>{logData.map(log => {
-                                    return <tr key={log.id}>
-                                        <td>{log.time}</td>
+                                    return <tr key={log.log_id}>
+                                        <td>{log.create_time}</td>
                                         <td>{log.masked + log.unmasked}</td>
                                         <td>{log.masked}</td>
                                         <td>{log.unmasked}</td>
@@ -94,8 +94,8 @@ function SensorModal(props){
                             <Autosizer disableHeight>{({ width }) => (
                                 <AverageChart 
                                     width={width} 
-                                    masked={averageMaskedData} 
-                                    unmasked={averageUnmaskedData}
+                                    masked={averageData.masked} 
+                                    unmasked={averageData.unmasked}
                                 ></AverageChart>
                             )}</Autosizer>
                         </div>
