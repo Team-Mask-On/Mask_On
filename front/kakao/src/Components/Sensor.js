@@ -25,8 +25,9 @@ function Sensor({ sensorInfo }){
         updateDifferences();
     }, [sensorInfo, sensorInfo.sensor_id, sensorInfo.max_capacity]);
 
-    const fetchAverage = () => {
-        setAverageData(require("../Dummies/average/"+String(sensorInfo.sensor_id)+".json"));
+    const fetchAverage = async () => {
+        const response = await require("../Dummies/average/"+String(sensorInfo.sensor_id)+".json");
+        setAverageData(response);
         console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Average Data Fetched!");
     }
 
