@@ -1,210 +1,180 @@
 [
     {
         "log_id": 1,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-02-12",
         "masked": 5,
         "unmasked": 10
     },
     {
         "log_id": 2,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-03-12",
         "masked": 10,
         "unmasked": 12
     },
     {
         "log_id": 3,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-04-12",
         "masked": 15,
         "unmasked": 11
     },
     {
         "log_id": 4,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-05-12",
         "masked": 13,
         "unmasked": 13
     },
     {
         "log_id": 5,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-06-12",
         "masked": 12,
         "unmasked": 5
     },
     {
         "log_id": 6,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-07-12",
         "masked": 11,
         "unmasked": 3
     },
     {
         "log_id": 7,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 20,
         "unmasked": 8
     },
     {
         "log_id": 8,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 13,
         "unmasked": 14
     },
     {
         "log_id": 9,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 12,
         "unmasked": 14
     },
     {
         "log_id": 10,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 15,
         "unmasked": 15
     },
     {
         "log_id": 11,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 13,
         "unmasked": 13
     },
     {
         "log_id": 12,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 10,
         "unmasked": 12
     },
     {
         "log_id": 13,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 8,
         "unmasked": 15
     },
     {
         "log_id": 14,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 9,
         "unmasked": 15
     },
     {
         "log_id": 15,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 16,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 17,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 18,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 19,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 20,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 21,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 22,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 23,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 24,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 25,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 26,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 27,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 28,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 29,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
     },
     {
         "log_id": 30,
-        "sensor_id": 2,
         "create_time": "2021-01-12-23-08-12",
         "masked": 11,
         "unmasked": 14
