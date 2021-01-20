@@ -8,10 +8,15 @@ class Log(DateTimeStampedModel):
     masked = models.IntegerField()
     unmasked = models.IntegerField()
 
+    def __str__(self):
+        return str(self.sensor_id)
+
 
 class AverageLog(models.Model):
 
     created_time = models.TimeField(auto_now_add=False)
     sensor_id = models.ForeignKey("sensor.Sensor", on_delete=models.CASCADE, default=None)
-    masked = models.IntegerField()
-    unmasked = models.IntegerField()
+    average = models.IntegerField()
+
+    def __str__(self):
+        return str(self.sensor_id)

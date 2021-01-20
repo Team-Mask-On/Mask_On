@@ -10,3 +10,6 @@ class Sensor(models.Model):
     max_capacity = models.IntegerField()
     latitude = models.DecimalField(max_digits=10, decimal_places=6)
     longitude = models.DecimalField(max_digits=10, decimal_places=6)
+
+    def __str__(self):
+        return self.name
