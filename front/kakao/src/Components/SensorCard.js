@@ -2,12 +2,10 @@ import React from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import Typography from "@material-ui/core/Typography"
-import { grey, green, amber, red } from "@material-ui/core/colors"
 
 const useStyles = makeStyles(theme => ({
   normal: {
     padding: theme.spacing(0.7),
-    color: "#fff",
     textAlign: "center",
     minWidth: 40
   },
@@ -17,16 +15,28 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function SensorCard(props){
-  const name = props.name;
+function SensorCard({ name,ratio }){
   const classes = useStyles()
-  const cardColor = green[700];
+
+  const getCardColor = (maskedRatio) => {
+    if(maskedRatio >= 0.5)
+       return "hsl(" + String(maskedRatio * 240 - 120) + ",80%,50%)";
+    else
+        return "hsl(0, 80%, 50%)";
+  }
+
+  const getFontColor = (maskedRatio) => {
+      if(maskedRatio >= 0.7)
+          return "#2E2E2E";
+      else
+          return "#FFFFFF";
+  }
 
   return (
     <div>
       <Card 
         className={classes.normal}
-        style={{ backgroundColor: cardColor, color: grey[100] 
+        style={{ backgroundColor: getCardColor(ratio), color: getFontColor(ratio)
       }}>
         <Typography className={classes.title} component="p">{name}</Typography>
       </Card>
