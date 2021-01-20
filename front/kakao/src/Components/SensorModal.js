@@ -53,7 +53,7 @@ function SensorModal(props){
                                     </tr>
                                 </thead>
                                 <tbody>{logData.map(log => {
-                                    return <tr key={log.log_id}>
+                                    return <tr key={log.id}>
                                         <td>{log.create_time}</td>
                                         <td>{log.masked + log.unmasked}</td>
                                         <td>{log.masked}</td>
