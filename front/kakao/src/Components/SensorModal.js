@@ -94,8 +94,7 @@ function SensorModal(props){
                             <Autosizer disableHeight>{({ width }) => (
                                 <AverageChart 
                                     width={width} 
-                                    masked={averageData.masked} 
-                                    unmasked={averageData.unmasked}
+                                    averageData={averageData}
                                 ></AverageChart>
                             )}</Autosizer>
                         </div>
