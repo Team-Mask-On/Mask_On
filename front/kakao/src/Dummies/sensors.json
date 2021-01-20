@@ -10,8 +10,10 @@
         "current": {
             "masked": 34,
             "unmasked": 10,
-            "average_masked": 24,
-            "average_unmasked": 5
+            "average": {
+                "average_masked": 24,
+                "average_unmasked": 5
+            }
         }
     },
     {
@@ -25,8 +27,10 @@
         "current": {
             "masked": 15,
             "unmasked": 4,
-            "average_masked": 11,
-            "average_unmasked": 3
+            "average": {
+                "average_masked": 11,
+                "average_unmasked": 3
+            }
         }
     },
     {
@@ -40,8 +44,10 @@
         "current": {
             "masked": 5,
             "unmasked": 1,
-            "average_masked": 6,
-            "average_unmasked": 2
+            "average": {
+                "average_masked": 6,
+                "average_unmasked": 2
+            }
         }
     },
     {
@@ -55,8 +61,10 @@
         "current": {
             "masked": 10,
             "unmasked": 10,
-            "average_masked": 9,
-            "average_unmasked": 11
+            "average": {
+                "average_masked": 9,
+                "average_unmasked": 11
+            }
         }
     },
     {
@@ -70,8 +78,10 @@
         "current": {
             "masked": 7,
             "unmasked": 1,
-            "average_masked": 10,
-            "average_unmasked": 3
+            "average": {
+                "average_masked": 10,
+                "average_unmasked": 3
+            }
         }
     },
     {
@@ -85,8 +95,10 @@
         "current": {
             "masked": 3,
             "unmasked": 0,
-            "average_masked": 2,
-            "average_unmasked": 1
+            "average": {
+                "average_masked": 2,
+                "average_unmasked": 1
+            }
         }
     },
     {
@@ -100,8 +112,10 @@
         "current": {
             "masked": 1,
             "unmasked": 8,
-            "average_masked": 2,
-            "average_unmasked": 6
+            "average": {
+                "average_masked": 2,
+                "average_unmasked": 6
+            }
         }
     }
 ]

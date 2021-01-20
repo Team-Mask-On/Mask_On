@@ -16,9 +16,9 @@ function Sensor({ sensorInfo }){
     useEffect(() => {
         const updateDifferences = () => {
             var currentTotal = sensorInfo.current.masked + sensorInfo.current.unmasked;
-            var averageTotal = sensorInfo.current.average_masked + sensorInfo.current.average_unmasked;
+            var averageTotal = sensorInfo.current.average.average_masked + sensorInfo.current.average.average_unmasked;
             setTotalDifference(currentTotal - averageTotal);
-            setRatioDifference((((sensorInfo.current.masked / currentTotal) * 100) - ((sensorInfo.current.average_masked / averageTotal) * 100)).toFixed(1))
+            setRatioDifference((((sensorInfo.current.masked / currentTotal) * 100) - ((sensorInfo.current.average.average_masked / averageTotal) * 100)).toFixed(1))
             setCapacity(sensorInfo.max_capacity - currentTotal);
             console.log("[UPDATE] #" + String(sensorInfo.sensor_id) + " Updated differences!")
         }
