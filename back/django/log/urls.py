@@ -4,5 +4,6 @@ from . import views
 app_name = "logs"
 
 urlpatterns = [
-    path("<int:sensor_id>/", views.SensorLogView.as_view()),
+    path("<str:sensor_id>/", views.SensorLogView.as_view()),
+    path("average/<str:sensor_id>/", views.AverageLogView.as_view()),
 ]
