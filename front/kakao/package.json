@@ -14,6 +14,7 @@
     "react-bootstrap": "^1.4.3",
     "react-dom": "^17.0.1",
     "react-kakao-maps": "Musma/react-kakao-maps#0.0.1",
+    "react-notifications-component": "^3.0.3",
     "react-scripts": "4.0.1",
     "react-virtualized-auto-sizer": "^1.0.3",
     "react-vis": "^1.11.7",
