@@ -1,8 +1,12 @@
 # Front
 ![Alt text](Screenshot/demo.gif)
-React를 이용해 작성되었습니다. [Kakao map API](https://apis.map.kakao.com/)를 [Musma/React-kakao-maps](https://github.com/Musma/react-kakao-maps)를 통해 사용하였습니다.
 
-각 센서가 제공하는 데이터의 통계자료는 [React-vis](https://github.com/uber/react-vis)를 통해 시각화 하였습니다.
+
+React를 이용해 작성되었습니다. 
+
+[Kakao map API](https://apis.map.kakao.com/)를 [Musma/React-kakao-maps](https://github.com/Musma/react-kakao-maps)를 통해 사용하였습니다.
+
+각 센서(라즈베리파이)가 제공하는 데이터의 통계자료는 [React-vis](https://github.com/uber/react-vis)를 통해 시각화 하였습니다.
 
 ## Install
 ```
