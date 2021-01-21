@@ -7,14 +7,10 @@ function KakaoMap(){
     const [sensorData, setSensorData] = useState([])
     const [latitude, setLatitude] = useState(36.360649863349586)
     const [longitude, setLongitude] = useState(127.34453802638934)
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            console.log("Latitude is :", position.coords.latitude);
-            console.log("Longitude is :", position.coords.longitude);
-            setLatitude(position.coords.latitude)
-            setLongitude(position.coords.longitude)
-        });
+        moveToCurrentLocation()
         fetchSensors();
     }, [])
 
@@ -23,20 +19,46 @@ function KakaoMap(){
         console.log("[FETCH] Sensor Data Fetched!")
     }
 
+    const moveToCurrentLocation = () => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+            position => {
+                console.log("getLocation", position.coords.latitude, position.coords.longitude)
+                moveTo(position.coords.latitude, position.coords.longitude)
+                setLoading(false)
+            },
+            () => {
+                setLoading(false)
+            }
+            )
+        } else {
+            setLoading(false)
+        }
+    }
+
+    const moveTo = (latitude, longitude) => {
+        setLatitude(latitude)
+        setLongitude(longitude)
+    }
+
     return(
         <React.Fragment>
-            <Map options={{
-                center: new kakao.maps.LatLng(latitude, longitude),
-                mapTypeId: kakao.maps.MapTypeId.ROADMAP,
-                maxLevel: 5,
-                minLevel: 2
-            }}>{sensorData.map(sensor => {
-                    return <Sensor 
-                        key={sensor.sensor_id}
-                        sensorInfo={sensor}
-                    ></Sensor>
-                })}
-            </Map>
+            {loading ? 
+                <h1>로딩화면이 들어갈 곳</h1>
+                :
+                <Map options={{
+                    center: new kakao.maps.LatLng(latitude, longitude),
+                    mapTypeId: kakao.maps.MapTypeId.ROADMAP,
+                    maxLevel: 5,
+                    minLevel: 2
+                }}>{sensorData.map(sensor => {
+                        return <Sensor 
+                            key={sensor.sensor_id}
+                            sensorInfo={sensor}
+                        ></Sensor>
+                    })}
+                </Map>
+            }
         </React.Fragment>
     );
 }
