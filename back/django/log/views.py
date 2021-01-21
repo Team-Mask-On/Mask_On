@@ -1,16 +1,18 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from sensor.models import Sensor
 from .models import Log, AverageLog
 from .serializers import LogSerializer, SensorLogSerializer
 
 
-# Sensor 의 로그 정보 ViewSet
+# Sensor 의 로그 정보 View
 class SensorLogView(APIView):
 
     def get_log(self, pk):
         try:
-            logs = Log.objects.filter(sensor_id=pk)
+            sensors = Sensor.objects.get(sensor_id=pk)
+            logs = Log.objects.filter(sensor_id=sensors)
             return logs
         except Log.DoesNotExist:
             return None
