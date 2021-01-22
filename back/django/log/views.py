@@ -26,7 +26,7 @@ class SensorLogView(APIView):
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-# ############### 에러나는 부분 ############### #
+
 class AverageLogView(APIView):
 
     def get_average_masked(self, pk):
