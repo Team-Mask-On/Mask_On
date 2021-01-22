@@ -18,10 +18,16 @@ class LogSerializer(serializers.ModelSerializer):
 
 
 # Sensor 별 평균 masked/unmasked 정보 Serializer
-class AverageLogSerializer(serializers.ModelSerializer):
+class AverageLogMaskedSerializer(serializers.ModelSerializer):
     class Meta:
         model = AverageLog
-        fields = ("average_masked", "average_unmasked",)
+        fields = ("average_masked", "created_time",)
+
+
+class AverageLogUnmaskedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AverageLog
+        fields = ("average_unmasked", "created_time",)
 
 
 # Sensor 의 로그 정보
