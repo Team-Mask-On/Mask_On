@@ -53,6 +53,20 @@ function KakaoMap(){
         setLongitude(longitude)
     }
 
+    const keywordSearch = (keyword) => {
+        const places = new kakao.maps.services.Places()
+        places.keywordSearch(keyword, (result, status) => {
+          if (status === kakao.maps.services.Status.OK) {
+            const { x, y } = result[0]
+            moveTo(y, x)
+          } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+            console.log("검색 결과가 없습니다.")
+          } else {
+            console.log("서비스에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.")
+          }
+        })
+    }
+
     return(
         <React.Fragment>
             <Map options={{
