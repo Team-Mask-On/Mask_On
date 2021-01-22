@@ -78,6 +78,7 @@ function KakaoMap(){
                     return <Sensor 
                         key={sensor.sensor_id}
                         sensorInfo={sensor}
+                        moveTo={moveTo}
                     ></Sensor>
                 })}
             </Map>
