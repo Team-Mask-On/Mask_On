@@ -3,6 +3,7 @@ import { Map } from 'react-kakao-maps'
 import React, { useState, useEffect, useCallback } from 'react';
 import Sensor from './Sensor';
 import { store } from 'react-notifications-component';
+import SearchBar from "./SearchBar";
 
 function KakaoMap(){
     const [sensorData, setSensorData] = useState([])
@@ -13,7 +14,6 @@ function KakaoMap(){
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 position => {
-                    console.log("getLocation", position.coords.latitude, position.coords.longitude)
                     moveTo(position.coords.latitude, position.coords.longitude)
                     message("현위치 좌표 설정 성공!", "현위치 기반으로 좌표가 설정되었습니다.", "success")
                 }
@@ -59,17 +59,19 @@ function KakaoMap(){
           if (status === kakao.maps.services.Status.OK) {
             const { x, y } = result[0]
             moveTo(y, x)
+            message("검색 결과", "키워드로 검색된 위치로 좌표가 설정되었습니다.", "success")
           } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-            console.log("검색 결과가 없습니다.")
+            message("검색 결과", "키워드로 검색된 결과가 없습니다.", "danger")
           } else {
-            console.log("서비스에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.")
+            message("서비스 오류", "서비스에 문제가 발생했습니다. 잠시 후 다시 시도해주세요.", "danger")
           }
         })
     }
 
     return(
         <React.Fragment>
-            <Map options={{
+            <Map
+            options={{
                 center: new kakao.maps.LatLng(latitude, longitude),
                 mapTypeId: kakao.maps.MapTypeId.ROADMAP,
                 maxLevel: 6,
@@ -82,6 +84,7 @@ function KakaoMap(){
                     ></Sensor>
                 })}
             </Map>
+            <SearchBar onSearch={keywordSearch}></SearchBar>
         </React.Fragment>
     );
 }
