@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from sensor.models import Sensor
 from .models import Log, AverageLog
-from .serializers import LogSerializer, SensorLogSerializer, AverageLogMaskedSerializer, AverageLogUnmaskedSerializer
+from .serializers import ReceptLogSerializer, SensorLogSerializer, AverageLogMaskedSerializer, AverageLogUnmaskedSerializer
 
 
 # Sensor 의 로그 정보 View
@@ -49,3 +49,19 @@ class AverageLogView(APIView):
         serializer_masked = AverageLogMaskedSerializer(average_masked, many=True).data
         serializer_unmasked = AverageLogUnmaskedSerializer(average_unmasked, many=True).data
         return Response({"masked": serializer_masked, "unmasked": serializer_unmasked})
+
+
+# ## 수신 부분
+class ReceptLogView(APIView):
+
+    def get(self, request):
+        return Response(status=status.HTTP_200_OK)
+
+    def post(self, request):
+        print(request.data)
+        log_serializer = ReceptLogSerializer(data=request.data)
+        if log_serializer.is_valid():
+            log_serializer.save()
+            return Response(log_serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(log_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -15,4 +15,4 @@ class Sensor(models.Model):
     current = models.ForeignKey("log.Log", on_delete=models.CASCADE, blank=True, null=True,)
 
     def __str__(self):
-        return self.name
+        return self.sensor_id
