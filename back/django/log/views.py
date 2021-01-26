@@ -20,7 +20,6 @@ class SensorLogView(APIView):
     def get(self, request, sensor_id):
         log = self.get_log(sensor_id)
         if log is not None:
-            print(log)
             serializer = SensorLogSerializer(log, many=True).data
             return Response(serializer)
         else:
