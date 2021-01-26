@@ -1,13 +1,17 @@
-from django.db import models
 from core.models import DateTimeStampedModel
+from django.db import models
 
 
 class Log(DateTimeStampedModel):
+    class Meta:
+       db_table = "log"
 
-    sensor_id = models.ForeignKey("sensor.Sensor", on_delete=models.CASCADE, related_name="log")
+    #sensor_id = models.ForeignKey("sensor.Sensor", on_delete=models.CASCADE, to_field="sensor_id")
+    sensor_id = models.CharField(max_length=50)
     masked = models.IntegerField()
     unmasked = models.IntegerField()
-    average = models.ForeignKey("log.AverageLog", on_delete=models.CASCADE, blank=True, null=True,)
+    #average = models.ForeignKey("log.AverageLog", on_delete=models.CASCADE, blank=True, null=True,)
+    average_id = models.IntegerField()
 
     def __str__(self):
         return str(self.sensor_id)

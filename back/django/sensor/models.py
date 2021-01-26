@@ -2,6 +2,8 @@ from django.db import models
 
 
 class Sensor(models.Model):
+    class Meta:
+        db_table = "sensor"
 
     sensor_id = models.CharField(max_length=24)
     name = models.CharField(max_length=20)

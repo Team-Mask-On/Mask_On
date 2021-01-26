@@ -33,17 +33,10 @@ class AverageLogUnmaskedSerializer(serializers.ModelSerializer):
 
 # ### 수신 부분
 class ReceptLogSerializer(serializers.ModelSerializer):
-    sensor_id = serializers.CharField(source="sensor_id")
 
     class Meta:
         model = Log
         fields = ("sensor_id", "masked", "unmasked", )
-
-    def create(self, validated_data):
-        sensor_data = validated_data.pop('sensor_id')
-        sensor = Sensor.objects.get(sensor_id=sensor_data['sensor_id'])
-        sensor.save()
-        return sensor
 
 
 # Sensor 의 로그 정보
