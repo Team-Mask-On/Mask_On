@@ -28,7 +28,8 @@ class Command(BaseCommand):
                 "created_time": lambda x: datetime.now(),
                 "sensor_id": lambda x: random.choice(sensor),
                 "average_masked": lambda x: average_log_seeder.faker.pyint(min_value=1, max_value=30),
-                "average_unmasked": lambda x: average_log_seeder.faker.pyint(min_value=1, max_value=30)
+                "average_unmasked": lambda x: average_log_seeder.faker.pyint(min_value=1, max_value=30),
+                "time": lambda x: str(average_log_seeder.faker.pyint(min_value=0000, max_value=2355, step=5))
             },
         )
         average_log_seeder.execute()

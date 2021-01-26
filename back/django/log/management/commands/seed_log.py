@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 "sensor_id": lambda x: random.choice(sensor),
                 "masked": lambda x: random.randint(1, 30),
                 "unmasked": lambda x: random.randint(1, 30),
-                "average": lambda x: random.choice(average)
+                "average_id": lambda x: random.randint(1, 10),
             },
         )
         log_seeder.execute()
