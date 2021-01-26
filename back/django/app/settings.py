@@ -25,7 +25,7 @@ SECRET_KEY = '0yq!juwbw^ubjgw#ety+5a46hf#l5gw#)6bhq&%306hb2#rr2%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ "*" ]
 
 
 # Application definition
@@ -45,7 +45,7 @@ PROJECT_APPS = [
     "sensor.apps.SensorConfig",
 ]
 
-THIRD_PARTY_APPS = ['django_seed', 'rest_framework', ]
+THIRD_PARTY_APPS = ['django_seed', 'rest_framework', 'corsheaders' ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
@@ -57,9 +57,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
