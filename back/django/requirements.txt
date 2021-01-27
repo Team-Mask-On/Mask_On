@@ -17,6 +17,7 @@ Django==3.1.5
 django-filter==2.4.0
 django-seed==0.2.2
 djangorestframework==3.12.2
+django-cors-headers==3.7.0
 docker==4.4.1
 docker-compose==1.25.5
 dockerpty==0.4.1
