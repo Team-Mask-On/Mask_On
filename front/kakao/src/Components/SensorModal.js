@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
 
 function SensorModal(props){
+    const apiURL = props.apiURL;
     const show = props.show;
     const handleClose = props.onClose;
     const sensorInfo = props.sensorInfo;
@@ -22,10 +23,10 @@ function SensorModal(props){
     const [logData, setLogData] = useState([]);
 
     const fetchLog = async () => {
-        axios.get('http://yabbyark.iptime.org:8001/api/logs/' + String(sensorInfo.sensor_id))
+        axios.get(apiURL + '/logs/' + sensorInfo.sensor_id)
         .then(response => {
             setLogData(response.data);
-            console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Log Data Fetched!");
+            console.log("[FETCH] #" + sensorInfo.sensor_id + " Log Data Fetched!");
         })
         .catch(error => {
             console.log(error);

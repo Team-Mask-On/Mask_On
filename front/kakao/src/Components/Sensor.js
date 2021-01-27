@@ -7,7 +7,7 @@ import SensorModal from './SensorModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
-function Sensor({ sensorInfo, moveTo }){
+function Sensor({ sensorInfo, apiURL, moveTo }){
     const currentTotal = sensorInfo.current.masked + sensorInfo.current.unmasked;
     const averageTotal = sensorInfo.current.average.average_masked + sensorInfo.current.average.average_unmasked;
     const currentMaskedRatio = sensorInfo.current.masked / currentTotal;
@@ -19,10 +19,10 @@ function Sensor({ sensorInfo, moveTo }){
     const [show, setShow] = useState(false);
 
     const fetchAverage = async () => {
-        axios.get('http://yabbyark.iptime.org:8001/api/logs/average/' + String(sensorInfo.sensor_id))
+        axios.get(apiURL + '/logs/average/' + sensorInfo.sensor_id)
         .then(response => {
             setAverageData(response.data);
-            console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Average Data Fetched!");
+            console.log("[FETCH] #" + sensorInfo.sensor_id + " Average Data Fetched!");
         })
         .catch(error => {
             console.log(error);
@@ -63,6 +63,7 @@ function Sensor({ sensorInfo, moveTo }){
             </CustomOverlay>
             <SensorModal 
                 sensorInfo={sensorInfo}
+                apiURL={apiURL}
                 onClose={handleClose}
                 show={show}
                 currentMasked={sensorInfo.current.masked}

@@ -6,7 +6,7 @@ import { store } from 'react-notifications-component';
 import SearchBar from "./SearchBar";
 import axios from 'axios';
 
-function KakaoMap(){
+function KakaoMap({ apiURL, refreshTerm }){
     const [sensorData, setSensorData] = useState([])
     const [latitude, setLatitude] = useState(37.40213319610438)
     const [longitude, setLongitude] = useState(127.10863508204353)
@@ -31,7 +31,7 @@ function KakaoMap(){
 
     useEffect(() => {
         const fetchSensors = () => {
-            axios.get('http://yabbyark.iptime.org:8001/api/sensors/')
+            axios.get(apiURL + '/sensors/')
             .then(response => {
                 setSensorData(response.data);
                 message("정보 갱신", "센서 정보가 갱신되었습니다.", "success")
@@ -42,11 +42,11 @@ function KakaoMap(){
             });
         }
         fetchSensors();
-        const interval = setInterval(() => fetchSensors(), 10000)
+        const interval = setInterval(() => fetchSensors(), refreshTerm)
         return () => {
             clearInterval(interval);
         }
-    }, [])
+    }, [apiURL, refreshTerm])
 
 
     const message = (title, message, type) => {
@@ -95,6 +95,7 @@ function KakaoMap(){
                     return <Sensor 
                         key={sensor.sensor_id}
                         sensorInfo={sensor}
+                        apiURL={apiURL}
                         moveTo={moveTo}
                     ></Sensor>
                 })}
