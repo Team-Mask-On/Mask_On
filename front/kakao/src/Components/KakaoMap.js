@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Sensor from './Sensor';
 import { store } from 'react-notifications-component';
 import SearchBar from "./SearchBar";
+import axios from 'axios';
 
 function KakaoMap(){
     const [sensorData, setSensorData] = useState([])
@@ -30,8 +31,14 @@ function KakaoMap(){
     }, [moveToCurrentLocation])
 
     const fetchSensors = () => {
-        setSensorData(require("../Dummies/sensors.json"));
-        console.log("[FETCH] Sensor Data Fetched!")
+        axios.get('http://yabbyark.iptime.org:8001/api/sensors/')
+        .then(response => {
+            setSensorData(response.data);
+            console.log("[FETCH] Sensor Data Fetched!")
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     const message = (title, message, type) => {

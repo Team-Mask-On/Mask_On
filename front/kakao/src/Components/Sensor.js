@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import SensorCard from './SensorCard';
 import SensorModal from './SensorModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 function Sensor({ sensorInfo, moveTo }){
     const currentTotal = sensorInfo.current.masked + sensorInfo.current.unmasked;
@@ -18,9 +19,14 @@ function Sensor({ sensorInfo, moveTo }){
     const [show, setShow] = useState(false);
 
     const fetchAverage = async () => {
-        const response = await require("../Dummies/average/"+String(sensorInfo.sensor_id)+".json");
-        setAverageData(response);
-        console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Average Data Fetched!");
+        axios.get('http://yabbyark.iptime.org:8001/api/logs/average/' + String(sensorInfo.sensor_id))
+        .then(response => {
+            setAverageData(response.data);
+            console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Average Data Fetched!");
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     const handleShow = () => {

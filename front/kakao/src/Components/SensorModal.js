@@ -3,6 +3,7 @@ import Autosizer from "react-virtualized-auto-sizer";
 import { Modal, Button, Container, Row, Col } from "react-bootstrap";
 import AverageChart from './AverageChart';
 import CurrentChart from './CurrentChart';
+import axios from 'axios';
 
 function SensorModal(props){
     const show = props.show;
@@ -17,9 +18,15 @@ function SensorModal(props){
     const [logView, setLogView] = useState(false);
     const [logData, setLogData] = useState([]);
 
-    const fetchLog = () => {
-        setLogData(require("../Dummies/log/"+sensorInfo.sensor_id+".json"));
-        console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Log Data Fetched!");
+    const fetchLog = async () => {
+        axios.get('http://yabbyark.iptime.org:8001/api/logs/' + String(sensorInfo.sensor_id))
+        .then(response => {
+            setLogData(response.data);
+            console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Log Data Fetched!");
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     return(
@@ -54,7 +61,7 @@ function SensorModal(props){
                                 </thead>
                                 <tbody>{logData.map(log => {
                                     return <tr key={log.id}>
-                                        <td>{log.create_time}</td>
+                                        <td>{log.created}</td>
                                         <td>{log.masked + log.unmasked}</td>
                                         <td>{log.masked}</td>
                                         <td>{log.unmasked}</td>
