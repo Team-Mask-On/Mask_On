@@ -27,8 +27,7 @@ class Command(BaseCommand):
                 "sensor_id": lambda x: random.choice(sensor),
                 "masked": lambda x: random.randint(1, 30),
                 "unmasked": lambda x: random.randint(1, 30),
-                "average_id": lambda x: random.randint(1, 10),
-                "time": lambda x: str(log_seeder.faker.pyint(min_value=0000, max_value=2355, step=5))
+                "time": lambda x: str(log_seeder.faker.pyint(min_value=600, max_value=2100, step=5))
             },
         )
         log_seeder.execute()
