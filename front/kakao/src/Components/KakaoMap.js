@@ -27,19 +27,27 @@ function KakaoMap(){
 
     useEffect(() => {
         moveToCurrentLocation();
-        fetchSensors();
     }, [moveToCurrentLocation])
 
-    const fetchSensors = () => {
-        axios.get('http://yabbyark.iptime.org:8001/api/sensors/')
-        .then(response => {
-            setSensorData(response.data);
-            console.log("[FETCH] Sensor Data Fetched!")
-        })
-        .catch(error => {
-            console.log(error);
-        });
-    }
+    useEffect(() => {
+        const fetchSensors = () => {
+            axios.get('http://yabbyark.iptime.org:8001/api/sensors/')
+            .then(response => {
+                setSensorData(response.data);
+                message("정보 갱신", "센서 정보가 갱신되었습니다.", "success")
+                console.log("[FETCH] Sensor Data Fetched!")
+            })
+            .catch(error => {
+                message("정보 갱신 에러", error, "danger")
+            });
+        }
+        fetchSensors();
+        const interval = setInterval(() => fetchSensors(), 10000)
+        return () => {
+            clearInterval(interval);
+        }
+    }, [])
+
 
     const message = (title, message, type) => {
         store.addNotification({
