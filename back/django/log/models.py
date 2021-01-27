@@ -10,6 +10,7 @@ class Log(DateTimeStampedModel):
     sensor_id = models.CharField(max_length=50)
     masked = models.IntegerField()
     unmasked = models.IntegerField()
+    time = models.CharField(max_length=10)
     #average = models.ForeignKey("log.AverageLog", on_delete=models.CASCADE, blank=True, null=True,)
     average_id = models.IntegerField()
 
@@ -25,7 +26,6 @@ class AverageLog(models.Model):
     sensor_id = models.CharField(max_length=50)
     average_masked = models.IntegerField()
     average_unmasked = models.IntegerField()
-    time = models.CharField(max_length=10)
 
     def __str__(self):
         return str(self.sensor_id)

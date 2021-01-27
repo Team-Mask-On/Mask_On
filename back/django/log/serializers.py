@@ -36,7 +36,7 @@ class ReceptLogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Log
-        fields = ("sensor_id", "masked", "unmasked", )
+        fields = ("time", "sensor_id", "masked", "unmasked", )
 
 
 # Sensor 의 로그 정보
