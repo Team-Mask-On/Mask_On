@@ -6,7 +6,7 @@ import SensorCard from './SensorCard';
 import SensorModal from './SensorModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function Sensor({ sensorInfo }){
+function Sensor({ sensorInfo, moveTo }){
     const currentTotal = sensorInfo.current.masked + sensorInfo.current.unmasked;
     const averageTotal = sensorInfo.current.average.average_masked + sensorInfo.current.average.average_unmasked;
     const currentMaskedRatio = sensorInfo.current.masked / currentTotal;
@@ -24,6 +24,7 @@ function Sensor({ sensorInfo }){
     }
 
     const handleShow = () => {
+        moveTo(sensorInfo.latitude, sensorInfo.longitude)
         setShow(true);
     }
 
