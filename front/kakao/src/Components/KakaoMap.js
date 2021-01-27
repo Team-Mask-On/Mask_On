@@ -4,8 +4,9 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Sensor from './Sensor';
 import { store } from 'react-notifications-component';
 import SearchBar from "./SearchBar";
+import axios from 'axios';
 
-function KakaoMap(){
+function KakaoMap({ apiURL, refreshTerm }){
     const [sensorData, setSensorData] = useState([])
     const [latitude, setLatitude] = useState(37.40213319610438)
     const [longitude, setLongitude] = useState(127.10863508204353)
@@ -26,13 +27,27 @@ function KakaoMap(){
 
     useEffect(() => {
         moveToCurrentLocation();
-        fetchSensors();
     }, [moveToCurrentLocation])
 
-    const fetchSensors = () => {
-        setSensorData(require("../Dummies/sensors.json"));
-        console.log("[FETCH] Sensor Data Fetched!")
-    }
+    useEffect(() => {
+        const fetchSensors = () => {
+            axios.get(apiURL + '/sensors/')
+            .then(response => {
+                setSensorData(response.data);
+                message("정보 갱신", "센서 정보가 갱신되었습니다.", "success")
+                console.log("[FETCH] Sensor Data Fetched!")
+            })
+            .catch(error => {
+                message("정보 갱신 에러", error, "danger")
+            });
+        }
+        fetchSensors();
+        const interval = setInterval(() => fetchSensors(), refreshTerm)
+        return () => {
+            clearInterval(interval);
+        }
+    }, [apiURL, refreshTerm])
+
 
     const message = (title, message, type) => {
         store.addNotification({
@@ -80,6 +95,7 @@ function KakaoMap(){
                     return <Sensor 
                         key={sensor.sensor_id}
                         sensorInfo={sensor}
+                        apiURL={apiURL}
                         moveTo={moveTo}
                     ></Sensor>
                 })}

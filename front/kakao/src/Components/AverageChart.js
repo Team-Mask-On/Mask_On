@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 
 function AverageChart(props){
     const classes = useStyles()
-    const averageData = props.averageData;
+    const averageData = [props.averageData["masked"], props.averageData["unmasked"]];
     const maskedColor = "#7abd91"
     const unmaskedColor = "#ff6962"
     const charWidth = props.width;
