@@ -25,8 +25,8 @@ class AverageLogView(APIView):
                 "unmasked":[]
             }
             for log in average_logs:
-                data["masked"].append({"y":log.average_time, "x":log.average_masked})
-                data["unmasked"].append({"y":log.average_time, "x":log.average_unmasked})
+                data["masked"].append({"y":log.average_masked, "x":log.average_time})
+                data["unmasked"].append({"y":log.average_unmasked, "x":log.average_time})
                 print(log.average_time, log.average_masked)
                 print(log.average_time, log.average_unmasked)
             # avg_serializer = AverageLogSerializer(average_logs, many=True)
