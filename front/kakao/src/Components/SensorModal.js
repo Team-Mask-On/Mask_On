@@ -75,7 +75,7 @@ function SensorModal(props){
                     </div>
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
                         <Button onClick={() => setLogView(false)}>요약 보기</Button>
-                        <Tooltip title="새로고침">
+                        <Tooltip title="새로고침" placement="top" arrow>
                             <IconButton aria-label="delete" onClick={() => fetchLog()}>
                                 <SyncRoundedIcon style={{ fontSize: 30 }}/>
                             </IconButton>
@@ -121,7 +121,7 @@ function SensorModal(props){
                             fetchLog();
                             setLogView(true);
                         }}>로그 보기</Button>
-                        <Tooltip title="새로고침">
+                        <Tooltip title="새로고침" placement="top" arrow>
                             <IconButton aria-label="delete" onClick={() => props.fetchAverage()}>
                                 <SyncRoundedIcon style={{ fontSize: 30 }}/>
                             </IconButton>
