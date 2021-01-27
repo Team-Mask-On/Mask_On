@@ -31,7 +31,6 @@ class Log(DateTimeStampedModel):
         super(Log, self).save(force_insert, force_update, *args, **kwargs)
         # you can add this for only existing model object
         if self.sensor_id:
-            print(self.time, self.sensor_id, self.masked, self.unmasked)
             # You can check if only 'price' field changed
             masked_avg = Log.objects.filter(sensor_id=self.sensor_id, time=self.time).aggregate(Avg('masked'))['masked__avg']
             unmasked_avg = Log.objects.filter(sensor_id=self.sensor_id, time=self.time).aggregate(Avg('unmasked'))['unmasked__avg']
