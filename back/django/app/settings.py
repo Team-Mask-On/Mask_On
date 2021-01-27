@@ -45,11 +45,14 @@ PROJECT_APPS = [
     "sensor.apps.SensorConfig",
 ]
 
-THIRD_PARTY_APPS = ['django_seed', 'rest_framework', ]
+THIRD_PARTY_APPS = ['django_seed', 'rest_framework', 'corsheaders' ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.security.SecurityMiddleware',	
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +63,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'app.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
