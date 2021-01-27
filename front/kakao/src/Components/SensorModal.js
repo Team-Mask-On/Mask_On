@@ -3,6 +3,9 @@ import Autosizer from "react-virtualized-auto-sizer";
 import { Modal, Button, Container, Row, Col } from "react-bootstrap";
 import AverageChart from './AverageChart';
 import CurrentChart from './CurrentChart';
+import SyncRoundedIcon from '@material-ui/icons/SyncRounded';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
 import axios from 'axios';
 
 function SensorModal(props){
@@ -70,7 +73,14 @@ function SensorModal(props){
                             </table>
                         </div>
                     </div>
-                    <Button onClick={() => setLogView(false)}>요약 보기</Button>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <Button onClick={() => setLogView(false)}>요약 보기</Button>
+                        <Tooltip title="새로고침">
+                            <IconButton aria-label="delete" onClick={() => fetchLog()}>
+                                <SyncRoundedIcon style={{ fontSize: 30 }}/>
+                            </IconButton>
+                        </Tooltip>
+                    </div>
                 </Modal.Body> 
                 :
                 <Modal.Body>
@@ -106,10 +116,17 @@ function SensorModal(props){
                             )}</Autosizer>
                         </div>
                     </div>
-                    <Button onClick={() => {
-                        fetchLog();
-                        setLogView(true);
-                    }}>로그 보기</Button>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <Button onClick={() => {
+                            fetchLog();
+                            setLogView(true);
+                        }}>로그 보기</Button>
+                        <Tooltip title="새로고침">
+                            <IconButton aria-label="delete" onClick={() => props.fetchAverage()}>
+                                <SyncRoundedIcon style={{ fontSize: 30 }}/>
+                            </IconButton>
+                        </Tooltip>
+                    </div>
                 </Modal.Body>
             }
         </Modal>

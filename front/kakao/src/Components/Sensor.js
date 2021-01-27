@@ -70,6 +70,7 @@ function Sensor({ sensorInfo, moveTo }){
                 totalDifference={totalDifference}
                 ratioDifference={ratioDifference}
                 capacity={capacity}
+                fetchAverage={fetchAverage}
                 averageData={averageData}
             />
         </>
