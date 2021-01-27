@@ -1,55 +1,38 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+
 from sensor.models import Sensor
 from .models import Log, AverageLog
-from .serializers import ReceptLogSerializer, SensorLogSerializer, AverageLogMaskedSerializer, AverageLogUnmaskedSerializer
+from .serializers import ReceptLogSerializer
+from .serializers import LogSerializer
 
-
-# Sensor 의 로그 정보 View
-class SensorLogView(APIView):
-
-    def get_log(self, pk):
-        try:
-            sensors = Sensor.objects.get(sensor_id=pk)
-            logs = Log.objects.filter(sensor_id=sensors)
-            return logs
-        except Log.DoesNotExist:
-            return None
-
+class SensorLogView(APIView):  
     def get(self, request, sensor_id):
-        log = self.get_log(sensor_id)
-        if log is not None:
-            serializer = SensorLogSerializer(log, many=True).data
-            return Response(serializer)
+        log = Log.objects.filter(sensor_id=sensor_id).order_by('-created')
+        if log:
+            serializer = LogSerializer(log, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-
 class AverageLogView(APIView):
-
-    def get_average_masked(self, pk):
-        sensors = Sensor.objects.get(sensor_id=pk)
-        average_logs = AverageLog.objects.filter(sensor_id=sensors)
-        return average_logs
-
-    def get_average_unmasked(self, pk):
-        sensors = Sensor.objects.get(sensor_id=pk)
-        average_logs = AverageLog.objects.filter(sensor_id=sensors)
-        return average_logs
-
-    def get_current_time(self, pk):
-        sensors = Sensor.objects.get(sensor_id=pk)
-        current_times = AverageLog.objects.filter(sensor_id=sensors)
-        return current_times
-
     def get(self, request, sensor_id):
-        average_masked = self.get_average_masked(sensor_id)
-        average_unmasked = self.get_average_unmasked(sensor_id)
-        serializer_masked = AverageLogMaskedSerializer(average_masked, many=True).data
-        serializer_unmasked = AverageLogUnmaskedSerializer(average_unmasked, many=True).data
-        return Response({"masked": serializer_masked, "unmasked": serializer_unmasked})
-
+        average_logs = AverageLog.objects.filter(sensor_id=sensor_id).order_by('average_time')
+        if average_logs:
+            data = {
+                "masked": [],
+                "unmasked":[]
+            }
+            for log in average_logs:
+                data["masked"].append({"y":log.average_time, "x":log.average_masked})
+                data["unmasked"].append({"y":log.average_time, "x":log.average_unmasked})
+                print(log.average_time, log.average_masked)
+                print(log.average_time, log.average_unmasked)
+            # avg_serializer = AverageLogSerializer(average_logs, many=True)
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 # ## 수신 부분
 class ReceptLogView(APIView):
@@ -58,7 +41,6 @@ class ReceptLogView(APIView):
         return Response(status=status.HTTP_200_OK)
 
     def post(self, request):
-        print(request.data)
         log_serializer = ReceptLogSerializer(data=request.data)
         if log_serializer.is_valid():
             log_serializer.save()
