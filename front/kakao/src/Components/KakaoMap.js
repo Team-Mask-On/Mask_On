@@ -38,7 +38,7 @@ function KakaoMap({ apiURL, refreshTerm }){
                 console.log("[FETCH] Sensor Data Fetched!")
             })
             .catch(error => {
-                message("정보 갱신 에러", error, "danger")
+                message("정보 갱신 에러", String(error), "danger")
             });
         }
         fetchSensors();
