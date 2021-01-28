@@ -3,8 +3,13 @@ import Autosizer from "react-virtualized-auto-sizer";
 import { Modal, Button, Container, Row, Col } from "react-bootstrap";
 import AverageChart from './AverageChart';
 import CurrentChart from './CurrentChart';
+import SyncRoundedIcon from '@material-ui/icons/SyncRounded';
+import Tooltip from '@material-ui/core/Tooltip';
+import IconButton from '@material-ui/core/IconButton';
+import axios from 'axios';
 
 function SensorModal(props){
+    const apiURL = props.apiURL;
     const show = props.show;
     const handleClose = props.onClose;
     const sensorInfo = props.sensorInfo;
@@ -17,9 +22,15 @@ function SensorModal(props){
     const [logView, setLogView] = useState(false);
     const [logData, setLogData] = useState([]);
 
-    const fetchLog = () => {
-        setLogData(require("../Dummies/log/"+sensorInfo.sensor_id+".json"));
-        console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Log Data Fetched!");
+    const fetchLog = async () => {
+        axios.get(apiURL + '/logs/' + sensorInfo.sensor_id)
+        .then(response => {
+            setLogData(response.data);
+            console.log("[FETCH] #" + sensorInfo.sensor_id + " Log Data Fetched!");
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     return(
@@ -54,7 +65,7 @@ function SensorModal(props){
                                 </thead>
                                 <tbody>{logData.map(log => {
                                     return <tr key={log.id}>
-                                        <td>{log.create_time}</td>
+                                        <td>{log.created}</td>
                                         <td>{log.masked + log.unmasked}</td>
                                         <td>{log.masked}</td>
                                         <td>{log.unmasked}</td>
@@ -63,7 +74,14 @@ function SensorModal(props){
                             </table>
                         </div>
                     </div>
-                    <Button onClick={() => setLogView(false)}>요약 보기</Button>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <Button onClick={() => setLogView(false)}>요약 보기</Button>
+                        <Tooltip title="새로고침" placement="top" arrow>
+                            <IconButton aria-label="delete" onClick={() => fetchLog()}>
+                                <SyncRoundedIcon style={{ fontSize: 30 }}/>
+                            </IconButton>
+                        </Tooltip>
+                    </div>
                 </Modal.Body> 
                 :
                 <Modal.Body>
@@ -99,10 +117,17 @@ function SensorModal(props){
                             )}</Autosizer>
                         </div>
                     </div>
-                    <Button onClick={() => {
-                        fetchLog();
-                        setLogView(true);
-                    }}>로그 보기</Button>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <Button onClick={() => {
+                            fetchLog();
+                            setLogView(true);
+                        }}>로그 보기</Button>
+                        <Tooltip title="새로고침" placement="top" arrow>
+                            <IconButton aria-label="delete" onClick={() => props.fetchAverage()}>
+                                <SyncRoundedIcon style={{ fontSize: 30 }}/>
+                            </IconButton>
+                        </Tooltip>
+                    </div>
                 </Modal.Body>
             }
         </Modal>

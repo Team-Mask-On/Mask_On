@@ -15,6 +15,7 @@ colorama==0.4.3
 cryptography==3.3.1
 distlib==0.3.1
 Django==3.1.5
+django-filter==2.4.0
 django-seed==0.2.2
 djangorestframework==3.12.2
 django-cors-headers==3.7.0
@@ -30,7 +31,7 @@ idna==2.10
 importlib-metadata==3.4.0
 jmespath==0.10.0
 jsonschema==3.2.0
-mypy-extensions==0.4.3
+Markdown==3.3.3
 numpy==1.19.5
 paramiko==2.7.2
 pathspec==0.8.1

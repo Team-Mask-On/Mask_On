@@ -5,8 +5,9 @@ import React, { useState } from 'react';
 import SensorCard from './SensorCard';
 import SensorModal from './SensorModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
-function Sensor({ sensorInfo }){
+function Sensor({ sensorInfo, apiURL, moveTo }){
     const currentTotal = sensorInfo.current.masked + sensorInfo.current.unmasked;
     const averageTotal = sensorInfo.current.average.average_masked + sensorInfo.current.average.average_unmasked;
     const currentMaskedRatio = sensorInfo.current.masked / currentTotal;
@@ -18,12 +19,18 @@ function Sensor({ sensorInfo }){
     const [show, setShow] = useState(false);
 
     const fetchAverage = async () => {
-        const response = await require("../Dummies/average/"+String(sensorInfo.sensor_id)+".json");
-        setAverageData(response);
-        console.log("[FETCH] #" + String(sensorInfo.sensor_id) + " Average Data Fetched!");
+        axios.get(apiURL + '/logs/average/' + sensorInfo.sensor_id)
+        .then(response => {
+            setAverageData(response.data);
+            console.log("[FETCH] #" + sensorInfo.sensor_id + " Average Data Fetched!");
+        })
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     const handleShow = () => {
+        moveTo(sensorInfo.latitude, sensorInfo.longitude)
         setShow(true);
     }
 
@@ -56,6 +63,7 @@ function Sensor({ sensorInfo }){
             </CustomOverlay>
             <SensorModal 
                 sensorInfo={sensorInfo}
+                apiURL={apiURL}
                 onClose={handleClose}
                 show={show}
                 currentMasked={sensorInfo.current.masked}
@@ -63,6 +71,7 @@ function Sensor({ sensorInfo }){
                 totalDifference={totalDifference}
                 ratioDifference={ratioDifference}
                 capacity={capacity}
+                fetchAverage={fetchAverage}
                 averageData={averageData}
             />
         </>

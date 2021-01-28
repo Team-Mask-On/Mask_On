@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  maskon_web:  
+    container_name: maskon_web
+    build: ./django
+    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./django:/code
+    expose:
+      - "8000"
+
+  maskon_nginx:
+    container_name: maskon_nginx
+    image: nginx:latest # nginx 서비스에서 사용할 도커 이미지
+    ports:
+      - "80:80"
+    volumes:
+      - ./django:/code
+      - ./config:/etc/nginx/conf.d
+    depends_on: # 서비스 간의 종속성 표현
+      - maskon_web
