@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  backend:
+    container_name: maskon_web
+    build: ./back/django
+    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./back/django:/code
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+
+  # frontend:
+  #   build: ./front/kakao
+  #   container_name: kakao-con
+  #   volumes:
+  #     - build_folder:/frontend/build
+  #   command: npm run start
+  #   expose:
+  #     - "3000"
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:8080
+    volumes:
+      - ./webserver/nginx-proxy.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./build:/var/www/frontend
+    depends_on:
+      - backend
+      # - frontend
+volumes:
+  build_folder:
