@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '0yq!juwbw^ubjgw#ety+5a46hf#l5gw#)6bhq&%306hb2#rr2%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = [ '*' ]
@@ -99,9 +99,9 @@ else:
     DATABASES = {
         "default": {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'maskOn-test',
+            'NAME': 'maskon',
             'USER': 'root',
-            'PASSWORD': '1234',
+            'PASSWORD': 'rootpassword',
             'HOST': 'mysql_db',
             'PORT': '3306',
         }

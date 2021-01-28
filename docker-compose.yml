@@ -3,6 +3,9 @@ version: '3'
 services:
   mysql_db:
     image: mysql:latest
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
     restart: always
     volumes:
       - ./mysql/db:/var/lib/mysql
@@ -11,10 +14,10 @@ services:
     cap_add:
       - SYS_NICE
     environment:
-      - MYSQL_DATABASE=app
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=1234
-      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE:maskon
+      - MYSQL_USER:root
+      - MYSQL_PASSWORD:1234
+      - MYSQL_ROOT_PASSWORD:rootpassword
 
   backend:
     container_name: maskon_web
@@ -30,6 +33,28 @@ services:
       - mysql_db:mysql_db
     depends_on:
       - mysql_db
+
+  migration:
+      build: ./back/django
+      image: app
+      command: sh -c "python manage.py migrate"
+      volumes:
+          - ./back/django:/code
+      links:
+          - mysql_db
+      depends_on:
+          - make_migrations
+  
+  make_migrations:
+      build: ./back/django
+      image: app
+      command: sh -c "python manage.py makemigrations"
+      volumes:
+          - ./back/django:/code
+      links:
+          - mysql_db
+      depends_on:
+          - mysql_db
   # frontend:
   #   build: ./front/kakao
   #   container_name: kakao-con
