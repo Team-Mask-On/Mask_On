@@ -5,8 +5,6 @@ from .models import Sensor
 
 class SensorSerializer(serializers.ModelSerializer):
 
-    current = LogSerializer()
-
     class Meta:
         model = Sensor
-        fields = ("sensor_id", "name", "description", "address", "max_capacity", "latitude", "longitude",  "current",)
+        fields = ("sensor_id", "name", "description", "address", "max_capacity", "latitude", "longitude", "current")

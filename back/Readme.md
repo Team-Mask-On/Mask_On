@@ -4,8 +4,6 @@
 <hr/>
 
 ## Fake DB 생성 Command 
-    python manage.py seed_sensor --number 
-
-    python manage.py seed_average --number 
+    python manage.py seed_sensor --number
     
     python manage.py seed_log --number
