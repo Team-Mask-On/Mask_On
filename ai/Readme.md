@@ -28,8 +28,8 @@ i.e. the percentage of your predictions are correct.
 Measure how good you find all the positives.  
 i.e. the percentage of how much you found the correct answer.
 
-**AP = Average Precision**
+**AP = Average Precision**  
 ![](./AP_graph.png)
 
-**mAP = mean Average Precision**
+**mAP = mean Average Precision**  
 Mean value of AP, in the whole class
