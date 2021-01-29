@@ -25,8 +25,8 @@ services:
     # build: ./back/django
     image : limm0jk/mask_on_server:0.1
     command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
-    volumes:
-      - ./back/django:/code
+    # volumes:
+    #   - ./back/django:/code
     expose:
       - "8000"
     ports:
