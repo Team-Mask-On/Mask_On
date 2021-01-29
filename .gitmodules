@@ -1,3 +1,0 @@
-[submodule "ai/yolov5"]
-	path = ai/yolov5
-	url = https://github.com/Limm-jk/yolov5.git
