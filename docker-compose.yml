@@ -36,23 +36,23 @@ services:
     # depends_on:
     #   - mysql_db
 
-  migration:
-      # build: ./back/django
-      image: app
-      command: sh -c "python manage.py migrate"
-      volumes:
-          - ./back/django:/code
-      # links:
-      #     - mysql_db
-      depends_on:
-          - make_migrations
+  # migration:
+  #     # build: ./back/django
+  #     image: app
+  #     command: sh -c "python manage.py migrate"
+  #     volumes:
+  #         - ./back/django:/code
+  #     # links:
+  #     #     - mysql_db
+  #     depends_on:
+  #         - make_migrations
   
-  make_migrations:
-      # build: ./back/django
-      image: app
-      command: sh -c "python manage.py makemigrations"
-      volumes:
-          - ./back/django:/code
+  # make_migrations:
+  #     # build: ./back/django
+  #     image: app
+  #     command: sh -c "python manage.py makemigrations"
+  #     volumes:
+  #         - ./back/django:/code
       # links:
       #     - mysql_db
       # depends_on:
