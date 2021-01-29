@@ -1,0 +1,155 @@
+[
+    {
+        "sensor_id": 1,
+        "name": "스타벅스",
+        "description": "스타벅스 충남대정문점",
+        "address": "대전광역시 유성구 온천2동 대학로 82",
+        "latitude": 36.360649863349586,
+        "longitude": 127.34453802638934,
+        "max_capacity": 40,
+        "current": {
+            "masked": 34,
+            "unmasked": 10,
+            "average": {
+                "average_masked": 24,
+                "average_unmasked": 5
+            }
+        }
+    },
+    {
+        "sensor_id": 2,
+        "name": "투썸플레이스",
+        "description": "투썸플레이스 충남대점",
+        "address": "대전광역시 유성구 궁동 479-8",
+        "latitude": 36.36155681655039,
+        "longitude": 127.34385159304685,
+        "max_capacity": 40,
+        "current": {
+            "masked": 15,
+            "unmasked": 4,
+            "average": {
+                "average_masked": 11,
+                "average_unmasked": 3
+            }
+        }
+    },
+    {
+        "sensor_id": 3,
+        "name": "이디야",
+        "description": "이디야커피 충대정문점",
+        "address": "대전 유성구 한밭대로 404",
+        "latitude": 36.36187576302508, 
+        "longitude": 127.34414005232662,
+        "max_capacity": 20,
+        "current": {
+            "masked": 5,
+            "unmasked": 1,
+            "average": {
+                "average_masked": 6,
+                "average_unmasked": 2
+            }
+        }
+    },
+    {
+        "sensor_id": 4,
+        "name": "이디야",
+        "description": "이디야 충남대점",
+        "address": "대전광역시 유성구 궁동 궁동로18번길 14",
+        "latitude": 36.362696240625276, 
+        "longitude": 127.34819105216812,
+        "max_capacity": 20,
+        "current": {
+            "masked": 10,
+            "unmasked": 10,
+            "average": {
+                "average_masked": 9,
+                "average_unmasked": 11
+            }
+        }
+    },
+    {
+        "sensor_id": 5,
+        "name": "BBQ 치킨",
+        "description": "BBQ 대전봉명점",
+        "address": "대전 유성구 대학로 60",
+        "latitude": 36.35880573195997, 
+        "longitude": 127.34475646173952,
+        "max_capacity": 15,
+        "current": {
+            "masked": 7,
+            "unmasked": 1,
+            "average": {
+                "average_masked": 10,
+                "average_unmasked": 3
+            }
+        }
+    },
+    {
+        "sensor_id": 6,
+        "name": "파파존스",
+        "description": "파파존스 대전유성점",
+        "address": "대전 유성구 온천로 45 푸르지오상가 106호",
+        "latitude": 36.356065072244995, 
+        "longitude": 127.34293519722736,
+        "max_capacity": 3,
+        "current": {
+            "masked": 3,
+            "unmasked": 0,
+            "average": {
+                "average_masked": 2,
+                "average_unmasked": 1
+            }
+        }
+    },
+    {
+        "sensor_id": 7,
+        "name": "배재원 회덮밥",
+        "description": "배재원 회덮밥",
+        "address": "대전광역시 유성구 궁동 426-1번지 2층",
+        "latitude": 36.36180287645795,
+        "longitude": 127.35080692699286,
+        "max_capacity": 10,
+        "current": {
+            "masked": 1,
+            "unmasked": 8,
+            "average": {
+                "average_masked": 2,
+                "average_unmasked": 6
+            }
+        }
+    },
+    {
+        "sensor_id": 8,
+        "name": "맥도날드",
+        "description": "맥도날드 유성 DT점",
+        "address": "대전광역시 유성구 봉명동 446-5",
+        "latitude": 36.35445391903458, 
+        "longitude": 127.34036119976288,
+        "max_capacity": 50,
+        "current": {
+            "masked": 25,
+            "unmasked": 18,
+            "average":{
+                "average_masked": 19,
+                "average_unmasked": 13
+            }
+        }
+    },
+    {
+        "sensor_id": 9,
+        "name": "메가박스",
+        "description": "메가박스 대전유성",
+        "address": "대전광역시 유성구 봉명동 326-45",
+        "latitude": 36.352015806124214,
+        "longitude": 127.34585719942822,
+        "max_capacity": 30,
+        "current": {
+            "masked": 16,
+            "unmasked": 14,
+            "average": {
+                "average_masked": 15,
+                "average_unmasked": 15
+            }
+        }
+    }
+]
