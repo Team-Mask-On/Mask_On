@@ -21,8 +21,9 @@ services:
   #     MYSQL_ROOT_PASSWORD: rootpassword
 
   backend:
-    container_name: maskon_web
-    build: ./back/django
+    # container_name: maskon_web
+    # build: ./back/django
+    image : limm0jk/mask_on_server:0.1
     command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./back/django:/code
@@ -36,7 +37,7 @@ services:
     #   - mysql_db
 
   migration:
-      build: ./back/django
+      # build: ./back/django
       image: app
       command: sh -c "python manage.py migrate"
       volumes:
@@ -47,7 +48,7 @@ services:
           - make_migrations
   
   make_migrations:
-      build: ./back/django
+      # build: ./back/django
       image: app
       command: sh -c "python manage.py makemigrations"
       volumes:
