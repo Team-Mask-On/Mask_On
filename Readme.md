@@ -23,16 +23,16 @@
 
 | 이름   | 학과         | 역할 | 소개 페이지                                         |
 | ------ | ------------ | ---- | --------------------------------------------------- |
-| 임준규 |  | AI, Deep Learning     | [개인 리포로 이동](https://github.com/Limm-jk) |
-| 양승훈 |  | Frontend     |  [개인 리포로 이동](https://github.com/Yabby1997)   |
-| 오현택 |    | Backend     | [개인 리포로 이동](https://github.com/HyunTaek5)   |
+| 임준규 | 컴퓨터공학과 | AI, Deep Learning     | [개인 리포로 이동](https://github.com/Limm-jk) |
+| 양승훈 | 컴퓨터공학과 | Frontend     |  [개인 리포로 이동](https://github.com/Yabby1997)   |
+| 오현택 | 모바일시스템공학과 | Backend     | [개인 리포로 이동](https://github.com/HyunTaek5)   |
 | 한승욱 | 컴퓨터공학과   |  Raspberry pi    | [개인 리포로 이동](https://github.com/SeungWookHan)                                                    |
 
 ## **Tech-Stack**
 |분류|기술|
 |------|---|
-|개발환경|AWS Elastic Beanstalk, Aws EC2 Ubuntu 18.04/20.04, Docker|
-|AI|Yolo, Torch, Tenserflow|
+|개발환경|AWS Elastic Beanstalk, AWS EC2 Ubuntu 18.04/20.04, Docker|
+|AI|YOLO v5, PyTorch|
 |Front-end|HTML5, CSS3, JavaScript, React.js|
 |Back-end|Nginx, Django|
 |Raspberrypi|Raspberrypi 4, pi camera|
@@ -218,7 +218,7 @@ body: Git Message Convention 방법 정리
 
 - 온라인 세션(팀원들끼리 지식 공유, 자신의 업무 실시간 공유 등)을 진행할 때 사용
 
-##### Githun(깃허브)
+##### Github(깃허브)
 
 - Git으로 코드 버전 관리를 저장하기 위함
 - Feature Branch 방식을 지향
