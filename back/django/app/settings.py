@@ -58,11 +58,12 @@ PROJECT_APPS = [
     "sensor.apps.SensorConfig",
 ]
 
-THIRD_PARTY_APPS = ['django_seed', 'rest_framework', 'corsheaders' ]
+THIRD_PARTY_APPS = ['django_seed', 'rest_framework', 'corsheaders', 'django_prometheus']
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -72,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'

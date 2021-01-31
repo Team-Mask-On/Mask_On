@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('', include("django_prometheus.urls")),
     path('admin/', admin.site.urls),
     path("api/logs/", include("log.urls")),
     path("api/sensors/", include("sensor.urls")),
