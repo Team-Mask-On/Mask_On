@@ -1,5 +1,11 @@
 version: '3'
 
+networks:
+  app-tier:
+    driver: bridge
+  grafana-tier:
+    driver: bridge
+
 services:
   # mysql_db:
   #   image: mysql:latest
@@ -19,13 +25,100 @@ services:
   #     MYSQL_USER: mask
   #     MYSQL_PASSWORD: root
   #     MYSQL_ROOT_PASSWORD: rootpassword
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - ./prometheus/data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+      - '--web.console.templates=/usr/share/prometheus/consoles'
+    ports:
+      - 9090:9090
+    links:
+      - cadvisor:cadvisor
+      - alertmanager:alertmanager
+    depends_on:
+      - cadvisor
+    networks:
+      - app-tier
+    restart: always
 
+  node-exporter:
+      image: prom/node-exporter
+      volumes:
+        - /proc:/host/proc:ro
+        - /sys:/host/sys:ro
+        - /:/rootfs:ro
+      command:
+        - '--path.procfs=/host/proc'
+        - '--path.sysfs=/host/sys'
+        - --collector.filesystem.ignored-mount-points
+        - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+      ports:
+        - 9100:9100
+      restart: always
+      networks:
+        - app-tier
+      deploy:
+        mode: global
+
+  alertmanager:
+      image: prom/alertmanager
+      ports:
+        - 9093:9093
+      volumes:
+        - ./alertmanager/:/etc/alertmanager/
+      networks:
+        - app-tier
+      restart: always
+      command:
+        - '--config.file=/etc/alertmanager/config.yml'
+        - '--storage.path=/alertmanager'
+
+  cadvisor:
+      image: google/cadvisor
+      volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:rw
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
+      ports:
+        - 8080:8080
+      networks:
+        - app-tier
+      restart: always
+      deploy:
+        mode: global
+        restart_policy:
+          condition: on-failure
+
+  grafana:
+      image: grafana/grafana
+      user: "472"
+      depends_on:
+        - prometheus
+      ports:
+        - 3000:3000
+      volumes:
+        - ./grafana/data:/var/lib/grafana
+        - ./grafana/provisioning/:/etc/grafana/provisioning/
+      env_file:
+        - ./grafana/config.monitoring
+      networks:
+        - app-tier
+        - grafana-tier
+      restart: always
   backend:
     container_name: maskon_web
     build: ./back/django
     command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./back/django:/code
+    networks:
+      - app-tier
     expose:
       - "8000"
     ports:
@@ -67,10 +160,12 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - 80:8080
+      - 80:80
     volumes:
       - ./webserver/nginx-proxy.conf:/etc/nginx/conf.d/default.conf:ro
       - ./build:/var/www/frontend
+    networks:
+      - app-tier
     depends_on:
       - backend
       # - frontend
