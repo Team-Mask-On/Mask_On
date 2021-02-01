@@ -8,17 +8,17 @@ def takePicture():
         ret, img = cap.read()
         if ret:
             curTime = time.strftime('%Y%m%d_%H%M%S', time.localtime(time.time()))
-            filePath = path.abspath("./captured_images") + "/"+ curTime + ".jpg"
-            cv2.imwrite(filePath, img)
+            image_path = path.abspath("./captured_images") + "/"+ curTime + ".jpg"
+            cv2.imwrite(image_path, img)
         else:
-            filePath = 0
+            image_path = False
 
     else:
         print('no camera!')
-        filePath = 0
+        image_path = False
     cap.release()
     cv2.destroyAllWindows()
-    return filePath
+    return image_path
 
 if __name__ == '__main__':
     takePicture()
