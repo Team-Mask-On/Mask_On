@@ -5,8 +5,8 @@ import 'react-notifications-component/dist/theme.css'
 import "animate.css/animate.css";
 
 function App() {
-  const apiURL = 'http://yabbyark.iptime.org:8001/api';
-  const refreshTerm = 13000;
+  const apiURL = 'http://3.35.82.17:8000/api';
+  const refreshTerm = 30000;
 
   return (
     <div style={{height: "100%"}}>
