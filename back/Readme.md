@@ -1,4 +1,4 @@
-#Back<hr/>
+# Back<hr/>
 
 ## 1. Architecture<hr/>
 Docker, Docker-compose를 통해 개발 환경을 동일하게 구성하였습니다.\
