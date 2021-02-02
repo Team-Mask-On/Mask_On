@@ -97,30 +97,12 @@ services:
     container_name: maskon_web
     image : limm0jk/mask_on_server:latest
     command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
-    volumes:
-      - ./back/django:/code
     networks:
       - app-tier
     expose:
       - "8000"
     ports:
       - "8000:8000"
-
-  # migration:
-  #     build: ./back/django
-  #     image: app
-  #     command: sh -c "python manage.py migrate"
-  #     volumes:
-  #         - ./back/django:/code
-  #     depends_on:
-  #         - make_migrations
-  
-  # make_migrations:
-  #     build: ./back/django
-  #     image: app
-  #     command: sh -c "python manage.py makemigrations"
-  #     volumes:
-  #         - ./back/django:/code
   nginx:
     image: nginx:latest
     ports:
