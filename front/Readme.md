@@ -46,9 +46,18 @@
 > cd front/kakao
 > docker build -t front-img .
 # 개발서버 열기
-> docker run --name front-con -v $(pwd):/app -p 3000:3000 -e REACT_APP_KAKAO_APP_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -e REACT_APP_API_URL=http://example:8000 -e REACT_APP_REFRESH_TERM=50000 front-img
+> docker run --name front-con \
+    -v $(pwd):/app \
+    -p 3000:3000 \
+    -e REACT_APP_KAKAO_APP_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
+    -e REACT_APP_API_URL=http://example:8000 \
+    -e REACT_APP_REFRESH_TERM=50000 front-img
 # React build하기
-> docker run -it -v $(pwd):/app -e REACT_APP_KAKAO_APP_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -e REACT_APP_API_URL=http://example:8000 -e REACT_APP_REFRESH_TERM=50000 front-img bash
+> docker run -it \
+    -v $(pwd):/app \
+    -e REACT_APP_KAKAO_APP_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx \
+    -e REACT_APP_API_URL=http://example:8000 \
+    -e REACT_APP_REFRESH_TERM=50000 front-img bash
 $ npm run build
 ```
 
@@ -61,19 +70,21 @@ $ npm run build
 - `REACT_APP_REFRESH_TERM` : Sensor정보를 새로고침 할 주기를 ms단위로 기입. ex) 50000
 
 ## Tech-Stack
-
-[제목 없음](https://www.notion.so/d3214d4bf47d479cabf9c13ec901b87f)
+|분류|기술|
+|------|---|
+|Node|Node 14.15.3|
+|React|React 17.0.1|
+|API|Kakaomap API|
 
 ### NPM Packages
 
+- [Musma/React-kakao-maps](https://github.com/Musma/react-kakao-maps) : 카카오지도 기능을 React Component로 제공
+- [patch-package](https://github.com/ds300/patch-package) : NPM Package를 patch할 수 있도록 해줌
+- [React-vis](https://github.com/uber/react-vis) : 데이터 시각화 Component
+- [React-notifications-component](https://github.com/teodosii/react-notifications-component) : 알림메시지 Component
 - [Material-UI](https://github.com/mui-org/material-ui)
 - [React-bootstrap](https://react-bootstrap.github.io/getting-started/introduction/)
-- [React-vis](https://github.com/uber/react-vis)
-- [Musma/React-kakao-maps](https://github.com/Musma/react-kakao-maps)
-- [React-notifications-component](https://github.com/teodosii/react-notifications-component)
 - [React-virtualized-auto-sizer](https://github.com/bvaughn/react-virtualized-auto-sizer)
-- [patch-package](https://github.com/ds300/patch-package)
 - [axios](https://github.com/axios/axios)
 - [animate.css](https://github.com/animate-css/animate.css)
-- [react-notifications-component](https://github.com/teodosii/react-notifications-component)
 - [styled-components](https://github.com/styled-components/styled-components)
