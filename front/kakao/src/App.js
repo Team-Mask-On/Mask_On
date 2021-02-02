@@ -5,9 +5,8 @@ import 'react-notifications-component/dist/theme.css'
 import "animate.css/animate.css";
 
 function App() {
-  const apiURL = 'http://3.35.82.17:8000/api';
-  const refreshTerm = 30000;
-
+  const apiURL = process.env.REACT_APP_API_URL;
+  const refreshTerm = process.env.REACT_APP_REFRESH_TERM;
   return (
     <div style={{height: "100%"}}>
       <ReactNotification />
