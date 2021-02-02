@@ -1,4 +1,16 @@
 # Mask On Raspberry-pi
+라즈베리파이는 YOLOv5가 돌아갈 수 있는 환경 위에서 Mask_On/ai/yolov5의 Model을 활용하여\
+매장 내 마스크 착용자 수, 마스크 미착용자 수를 분석합니다.\
+전체적인 로직은 아래와 같습니다.
+```
+1. 특정 시간 간격으로 매장 내의 이미지를 촬영한다.
+2. 해당 이미지를 특정 폴더에 저장한다.
+3. YOLOv5를 활용하여 저장된 이미지를 분석한다.
+4. json 형식으로 나온 결과값을 읽어와 마스크 착용자 수, 마스크 미착용자 수를 얻는다.
+5. 자신의 고유 센서 넘버를 계산한다.
+6. 현재 시간을 설정해준 시간 값으로 잘라준다(ex) 5분 -> 0900, 0905, ...)
+7. 해당 전체 데이터를 웹서버로 송신한다.
+```
 
 ## Architecture<hr/>
 Raspberrypi 4에서 Yolov5를 사용할 수 있는 환경을 구축하였습니다.\
@@ -14,21 +26,26 @@ Pi camera와 연동하여 카메라 촬영을 제어할 수 있게 구현하였�
 |YOLOv5| torch 1.7, torchvison 0.8|
 |Opencv| Opencv 4.5|
 
-## Tree<hr/>
+
+## File Tree<hr/>
 ```
-├── captured_images: 라즈베리에서 캡처되는 이미지가 저장되는 폴더
-├── get_serial_number.py
-├── image_capture.py
-├── image_detect.py
-├── main.py
-├── result_read.py
-├── sender.py
-└── time_generator.py
+├── Readme.md: 리드미 파일
+├── architecture: 리드미에 들어가는 아키텍처 이미지 리소스
+│   └── architecture.png
+├── captured_images: 라즈베리파이에서 촬영되는 이미지가 저장되는 폴더
+├── get_serial_number.py: 라즈베리파이의 고유 cpu serial 번호를 추출하는 getserial 함수를 가진 파일
+├── image_capture.py: 라즈베리파이에서 이미지를 촬영하는 기능인 takePicture 함수를 가진 파일
+├── image_detect.py: captured_images에 저장된 이미지를 딥러닝 분석하는 detect 함수를 가진 파일
+├── main.py: 부분 기능들을 한데 모아 전체 로직 구성한 파일
+├── requirements.txt: 필요한 모듈들을 한데 모아 놓을 파일
+├── result_read.py: 이미지 분석 결과값을 읽어와서 계산하는 result_json_read 함수를 가진 파일
+├── sender.py: 전체 분석결과 데이터를 웹서버로 송신하는 send_data 함수를 가진 파일
+└── time_generator.py: 현재 시간을 기반으로 0900, 0905 등 설정한 minutes 값으로 분류해주는 역할을 하는 파일
 ```
 
 ## Installation<hr/>
-**라즈베리파이에 정상적으로 Pi Camera가 연결되었다는 가정하로 진행합니다**
-**전원이 연결된 라즈베리파이에 네트워크가 연결되었다는 가정하로 진행합니다**
+**라즈베리파이에 정상적으로 Pi Camera가 연결되었다는 가정하로 진행합니다.**\
+**전원이 연결된 라즈베리파이에 네트워크가 연결되었다는 가정하로 진행합니다.**
 - 라즈베리파이에 ssh 접속
 ```
 $ ssh pi@"라즈베리파이 IP주소"
@@ -80,15 +97,15 @@ python3-yaml python3-setuptools
 $ sudo apt-get install libavutil-dev libavcodec-dev libavformat-dev 
 libswscale-dev
 ```
-1. [torch wheel](https://drive.google.com/file/d/1A_u4xEfZtCPtXEo2cLNuMDigDcBd8bmQ/view?usp=sharing)
-2. [torchvision wheel](https://drive.google.com/file/d/1wXWHNTJD8RODMhUkDvNNIBA1x6kLQPuG/view?usp=sharing)
+1. [download torch wheel](https://drive.google.com/file/d/1A_u4xEfZtCPtXEo2cLNuMDigDcBd8bmQ/view?usp=sharing)
+2. [download torchvision wheel](https://drive.google.com/file/d/1wXWHNTJD8RODMhUkDvNNIBA1x6kLQPuG/view?usp=sharing)
 - 위의 wheel을 다운 받아서 라즈베리파이로 옮겨줍니다.
 ```
 $ sudo pip3 install torch-1.7.0a0-cp37-cp37m-linux_aarch64.whl
 $ sudo pip3 install torchvision-0.8.0a0+45f960c-cp37-cp37m-linux_aarch64.whl
 ```
 
-- 이 상태로 `import torch`를 하면 오류가 날 것이다. openmpi 설치가 필요합니다.
+- 이 상태로 `import torch`를 하면 오류가 날 것 입니다. openmpi 설치가 필요합니다.
 ```
 $ sudo apt-get install libopenmpi-dev
 $ export LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/openmpi/lib:$LIBRARY_PATH
@@ -189,7 +206,7 @@ $ sudo apt-get update
 '4.5.0'
 ```
 
-- v4l2 설치
+- v4l2 설치: **라즈베리파이 64bit OS에서는 pi camera, raspistill을 사용 못하기에 해당 모듈을 활용합니다.**
 ```
 $ vcgencmd get_camera
 supported=1 detected=1
@@ -210,13 +227,13 @@ bcm2835-v412
 
 # sudo modprobe bcm2835-v4l2를 매번 부팅시마다 해주는 것을 자동화하기 위해 작성
 ```
+---
 ### requirements.txt 설치
 **위 과정이 완료되어야 오류 없이 설치가 가능합니다**
 ```
 /Mask_On/rpi
 $ pip3 install -r requirements.txt
 ```
-
 ## RUN<hr/>
 ```
 # /Mask_On 최상위 뎁스에서 시작한다는 가정
@@ -224,15 +241,28 @@ $ cd rpi # /Mask_On/rpi
 $ python3 main.py
 촬영 간격을 입력하시오: "원하는 촬영 간격 입력"
 ```
-**입력한 촬영간격에 따라 실제 라즈베리파이 촬영, 현재 시간을 기반으로 시간대 끊어주기 기능이 작동합니다.**
+**입력한 촬영간격에 따라 실제 라즈베리파이 촬영, 현재 시간을 기반으로 시간대 끊어주기 기능이 작동합니다.**\
 **ex) 입력: 300 -> 5분 간격으로 촬영하며, 현재 시간을 기반으로 0900, 0905, ... 식으로 저장합니다**
 
 ## TroubleShooting<hr/>
-torch 설치후 import 안되는 문제 
-- OSError: libmpi_cxx.so.40: cannot open shared object file: No such file or directory
+### torch, torchvision wheel이 설치가 안되는 문제
+- torch-1.7.0a0-cp37-cp37m-linux_aarch64.whl is not a supported wheel on this platform 
+    * cp37이라는 것은 3.7 버전에서 가능하다는 의미이므로 파이썬 3.7대 위에서 설치함으로써 해결
 
-라즈베리파이 os 64bit에서는 MMAL 지원을 안함에따라 raspistill과 picamera가 사용불가능함 
+### torch 설치후 import 안되는 문제 
+- OSError: libmpi_cxx.so.40: cannot open shared object file: No such file or directory
+    * openmil를 설치해주고 환경 변수 지정을 해줌으로써 해결
+    ```
+    sudo apt-get install libopenmpi-dev
+    export LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/openmpi/lib:$LIBRARY_PATH
+    ```
+    * [참고 자료](https://forums.developer.nvidia.com/t/pytorch-for-jetson-version-1-7-0-now-available/72048/385)
+
+### 라즈베리파이 os 64bit에서는 MMAL 지원을 안함에따라 raspistill과 picamera가 사용불가능한 문제
 - https://www.raspberrypi.org/forums/viewtopic.php?t=213435
 - https://www.raspberrypi.org/forums/viewtopic.php?t=285868
+    * v4l2를 활용함으로써 해결(아래 링크는 본인의 질문 내역)
+    - https://raspberrypi.stackexchange.com/questions/120472/how-can-i-use-camera-in-raspberry-64-bit
+    - https://www.facebook.com/groups/codingeverybody/permalink/5254050434635450/
 
 ### [Development Log](https://www.notion.so/2021-Silicon-Valley-Online-Internship-4e9d2a51d4e748eeb4302239f7367548)
