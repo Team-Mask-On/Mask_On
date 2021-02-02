@@ -10,9 +10,11 @@ def roundTime(dt=None, dateDelta=timedelta(minutes=5)):
     rounding = (seconds+roundTo/2) // roundTo * roundTo
     return dt + timedelta(0,rounding-seconds,-dt.microsecond)
 
-def get_time():
+def get_time(sleep_time=300):
+    minutes = sleep_time // 60
+    print(minutes)
     curr_time = datetime.now()
-    result_time = roundTime(curr_time).strftime('%H%M')
+    result_time = roundTime(curr_time, timedelta(minutes=minutes)).strftime('%H%M')
     if time_stack:
         prev_time = time_stack.pop()
     else:
@@ -21,7 +23,7 @@ def get_time():
     if result_time != prev_time:
         time_stack.append(result_time)
     else:
-        result_time = roundTime(curr_time + timedelta(minutes=5)).strftime('%H%M')
+        result_time = roundTime(curr_time + timedelta(minutes=minutes)).strftime('%H%M')
         time_stack.append(result_time)
     return result_time
 
