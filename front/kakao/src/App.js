@@ -5,7 +5,7 @@ import 'react-notifications-component/dist/theme.css'
 import "animate.css/animate.css";
 
 function App() {
-  const apiURL = process.env.REACT_APP_API_URL;
+  const apiURL = process.env.REACT_APP_API_URL + '/api';
   const refreshTerm = process.env.REACT_APP_REFRESH_TERM;
   return (
     <div style={{height: "100%"}}>
