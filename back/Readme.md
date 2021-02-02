@@ -15,15 +15,6 @@ Granfa + Prometheus로 Back-end 모니터링을 구현하였습니다.
 |Monitoring| [Grafana](https://grafana.com/), [Prometheus](https://prometheus.io), [cAdvisor](https://github.com/google/cadvisor), [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/)|
 |DataBase|[AWS RDS MySQL](https://aws.amazon.com/ko/rds/)|
 
-
-## 3. Run with Docker Compose
-```
-$ git clone https://github.com/Team-Mask-On/Mask_On.git
-$ cd back/django
-$ docker-compose build
-$ docker-compose up
-```
-
 # Monitoring<hr/>
 
 ## 1. Grafana
@@ -46,7 +37,11 @@ Average_Log Table : Log가 들어올 때 마다 자동 생성되는 시간대별
 
 ![dbArchitect](archictecture/dbArchitect.png)
 
-## 2. Fake DB 생성 Command <hr/> 
+## 2. DB Settings<hr/>
+
+
+
+## 3. Fake DB 생성 Command <hr/> 
     python manage.py seed_sensor --number
     
     python manage.py seed_log --number
