@@ -17,8 +17,17 @@ Granfa + Prometheus로 Back-end 모니터링을 구현하였습니다.
 
 # Monitoring<hr/>
 
-## 1. Grafana
-[https://localhost:3000]()\
+## 1. Introduction
+Infrastructure monitoring is the basis for application performance management. 
+The underlying system’s availability and health must be maximized continually. 
+To achieve this, one has to monitor the system metrics like CPU, memory, network, and disk. Response time lag, if any must be addressed swiftly. 
+Here we'll take a look at how to Monitor servers (and even Docker Containers running inside the Server) using 
+Grafana, Prometheus, Node Exporter, CAdvisor and django.
+
+![architect](archictecture/docker-prometheus-overview.png)
+
+## 2. Grafana
+[http://mask-on.ml:3000](http://mask-on.ml:3000/) \
 Login\
 id: 'admin'\
 password:'1234'
@@ -26,7 +35,30 @@ password:'1234'
 ![grafana](archictecture/dockerGrafana.png)
 
 ### Django application Dashboard
+![django](archictecture/djangoGrafana.png)
 
+## 3. Prometheus
+[http://mask-on.ml:9090](http://mask-on.ml:9090/)
+
+
+![prometheus](archictecture/prometheus.png)
+
+## 4. cAdvisor
+[http://mask-on.ml:8080](http://mask-on.ml:8080/)
+
+![cAdvisor1](archictecture/cAdvisor1.png)
+![cAdvisor2](archictecture/cAdvisor2.png)
+![cAdvisor3](archictecture/cAdvisor3.png)
+
+## 5. node-exporter
+[http://mask-on.ml:9100](http://mask-on.ml:9100/)
+
+![node](archictecture/node-exporter.png)    
+
+## 6. AlertManager
+[http://mask-on.ml:9093](http://mask-on.ml:9093/)
+
+![alert](archictecture/alertManager.png)
 
 # Database<hr/>
 - Amazon RDS MySQL로 DB를 구성하였습니다.
@@ -37,11 +69,7 @@ Average_Log Table : Log가 들어올 때 마다 자동 생성되는 시간대별
 
 ![dbArchitect](archictecture/dbArchitect.png)
 
-## 2. DB Settings<hr/>
-
-
-
-## 3. Fake DB 생성 Command <hr/> 
+## 2. Fake DB 생성 Command <hr/> 
     python manage.py seed_sensor --number
     
     python manage.py seed_log --number
