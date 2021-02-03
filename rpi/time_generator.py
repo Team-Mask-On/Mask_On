@@ -12,6 +12,8 @@ def roundTime(dt=None, dateDelta=timedelta(minutes=5)):
 
 def get_time(sleep_time=300):
     minutes = sleep_time // 60
+    if minutes == 0:
+        minutes = 1
     print(minutes)
     curr_time = datetime.now()
     result_time = roundTime(curr_time, timedelta(minutes=minutes)).strftime('%H%M')

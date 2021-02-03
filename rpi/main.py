@@ -8,7 +8,7 @@ from result_read import result_json_read
 from time_generator import get_time
 from sender import send_data
 
-URL = "http://3.35.82.17:8000/api/logs/log-data" # URL 설정
+URL = "http://mask-on.ml:8000/api/logs/log-data" # URL 설정
 
 # Do not change
 capture_count = 0 
@@ -28,46 +28,43 @@ def main():
     global capture_count
     global URL
     sleep_time = sleep_time_input()
+    serial_number = getserial()
+    if serial_number == "ERROR000000000":
+        print("센서 고유번호 받아오기 실패.")
     while True:
         if capture_count != 0:
             print("이미지 촬영 대기중...")
             sleep(sleep_time)
-        
         print("이미지 촬영을 시작합니다...")
         image_path = takePicture()
-        if image_path:
-            print("이미지 촬영이 완료되었습니다.")
-        else:
+        if not image_path:
             print("이미지 촬영을 실패하였습니다.")
-
-        if path.exists(image_path):
-            print("이미지를 확인했습니다. 분석 시작...")
-            result_path = detect(image_path)
-            if result_path:
-                print("이미지 분석 완료")
-                print("결과값 파일 분석 시작...")
-                masked, unmasked, is_true = result_json_read(result_path)
-                if is_true:
-                    print("결과값 파일 분석 완료.")
-                else:
-                    print("결과값 파일 분석 실패.")
-                serial_number = getserial()
-                if serial_number == "ERROR000000000":
-                    print("센서 고유번호 받아오기 실패.")
-                time = get_time(sleep_time)
-                print("결과값 파일 전송 시작...")
-                send_result = send_data(URL, serial_number, masked, unmasked, time)
-                if send_result:
-                    print("결과값 파일 전송 완료.")
-                else:
-                    print("결과값 파일 전송 실패.")
-                capture_count += 1
-
-            else:
-                print("이미지 분석 실패")
-
-        else:
+            continue
+        print("이미지 촬영이 완료되었습니다.")
+        if not path.exists(image_path):
             print("이미지가 없습니다.")
+            continue
+        print("이미지를 확인했습니다. 분석 시작...")
+        result_path = detect(image_path)
+        if not result_path:
+            print("이미지 분석 실패")
+            continue
+        print("이미지 분석 완료")
+        print("결과값 파일 분석 시작...")
+        masked, unmasked, is_true = result_json_read(result_path)
+        if not is_true:
+            print("결과값 파일 분석 실패.")
+            continue
+        print("결과값 파일 분석 완료.")
+        time = get_time(sleep_time)
+        print("결과값 파일 전송 시작...")
+        send_result = send_data(URL, serial_number, masked, unmasked, time)
+        if not send_result:
+            print("결과값 파일 전송 실패.")
+            continue
+        print("결과값 파일 전송 완료.")
+        capture_count += 1
+
 
 if __name__ == '__main__':
     main()
