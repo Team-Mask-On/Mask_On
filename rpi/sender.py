@@ -1,7 +1,7 @@
 import requests
 
-URL = "http://3.35.82.17/:8000/api/logs/log-data"
-def send_data(cpuserial, masked, unmasked, time):
+def send_data(URL, cpuserial, masked, unmasked, time):
+    URL = URL
     data = {"masked": masked, "unmasked": unmasked, "sensor_id":cpuserial, "time": time}
     print(data)
     try:
