@@ -29,7 +29,15 @@ Measure how good you find all the positives.
 i.e. the percentage of how much you found the correct answer.
 
 **AP = Average Precision**  
-![](./AP_graph.png)
+![](./images/AP_graph.png)
 
 **mAP = mean Average Precision**  
 Mean value of AP, in the whole class
+
+### Data
+
+**Class Count**
+![](./images/classCount.png)
+
+**Object Count**
+![](./images/ObjectCount.png)
