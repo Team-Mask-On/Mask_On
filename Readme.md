@@ -28,8 +28,9 @@
 또한 현재 업종별 명확하지 않은 영업 제한으로 인해 [피해받는 자영업자](https://www.donga.com/news/Economy/article/all/20201217/104481979/1)들이 많은데 이를 통해 현실적인 영업 제한의 근거로 사용될 수 있을 것으로 기대된다.
 
 ## Demo
-
-![./images/demo.gif](./images/demo.gif)
+<img src = "./images/raspberrypi.png" width="50%">
+<img src = "./images/live.gif" width="80%">
+<img src = "./images/demo.gif" width="50%">
 
 ## Architecture
 

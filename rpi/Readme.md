@@ -1,4 +1,5 @@
 # Mask On Raspberry-pi
+<img src = "../images/raspberrypi.png" width="50%">\
 라즈베리파이는 YOLOv5가 돌아갈 수 있는 환경 위에서 Mask_On/ai/yolov5의 Model을 활용하여\
 매장 내 마스크 착용자 수, 마스크 미착용자 수를 분석합니다.\
 전체적인 로직은 아래와 같습니다.
