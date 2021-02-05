@@ -39,5 +39,5 @@ Mean value of AP, in the whole class
 **Class Count**
 ![](./images/classCount.png)
 
-**Object Count**
+**Object Count**  
 ![](./images/ObjectCount.png)
