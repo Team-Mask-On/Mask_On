@@ -80,7 +80,7 @@ const SearchBar = ({ onSearch }) => {
             onChange={e => setSearchText(e.target.value)}
             value={searchText}
             onKeyPress={e => {
-                if (e.key === "Enter") {
+                if (e.key === "Enter" && searchText !== "") {
                   onSearch(searchText)
                   setSearchText("")
                 }
