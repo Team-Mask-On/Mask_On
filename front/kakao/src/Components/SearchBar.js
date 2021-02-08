@@ -80,9 +80,13 @@ const SearchBar = ({ onSearch }) => {
             onChange={e => setSearchText(e.target.value)}
             value={searchText}
             onKeyPress={e => {
-                if (e.key === "Enter" && searchText !== "") {
-                  onSearch(searchText)
-                  setSearchText("")
+                if (e.key === "Enter") {
+                    if (searchText !== "") {
+                        onSearch(searchText)
+                        setSearchText("")
+                    } else {
+                        alert("검색어를 입력해주세요!");
+                    }
                 }
             }}
           />
