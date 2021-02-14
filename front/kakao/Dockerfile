@@ -7,7 +7,6 @@ ENV REACT_APP_KAKAO_APP_KEY=
 ENV REACT_APP_API_URL=
 ENV REACT_APP_REFRESH_TERM=
 
-COPY .npmrc ./
 COPY patches ./patches
 COPY package*.json ./
 RUN npm install
