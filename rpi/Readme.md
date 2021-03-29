@@ -251,7 +251,7 @@ $ python3 main.py
 
 ### torch 설치후 import 안되는 문제 
 - OSError: libmpi_cxx.so.40: cannot open shared object file: No such file or directory
-    * openmil를 설치해주고 환경 변수 지정을 해줌으로써 해결
+    * openmpi를 설치해주고 환경 변수 지정을 해줌으로써 해결
     ```
     sudo apt-get install libopenmpi-dev
     export LIBRARY_PATH=/usr/lib/aarch64-linux-gnu/openmpi/lib:$LIBRARY_PATH
